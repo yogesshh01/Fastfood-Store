@@ -516,7 +516,10 @@ function Menu({ setCart }) {
                             ${item.price.toFixed(2)}
                           </span>
                           <button
-                            onClick={() => addToCart(item)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              addToCart(item);
+                            }}
                             className="bg-red-500 hover:bg-red-600 active:scale-95 text-white font-bold text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 shadow-sm transition-all duration-200 cursor-pointer"
                           >
                             <FaShoppingCart className="text-[10px]" />
