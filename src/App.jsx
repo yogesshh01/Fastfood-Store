@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 
 // Pages
@@ -10,6 +10,7 @@ import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import EditProfile from './pages/EditProfile'
+import ProductDetail from './pages/ProductDetail'
 
 // Layout
 import Navbar from './components/layout/Navbar'
@@ -19,14 +20,18 @@ import Footer from './components/layout/Footer'
 import PrivateRoute from './components/ui/PrivateRoute'
 
 // Auth
-import { AuthProvider, useAuth } from './context/AuthContext'
+import { AuthProvider } from './context/AuthContext'
 
 import './App.css'
 
 function AppLayout({ cart, setCart, scrollToSection, homeRef, contactRef, aboutRef, menuRef }) {
   const location = useLocation();
-  const { user } = useAuth();
-  const hideNavFooter = location.pathname === '/login';
+  const hideNavFooter = location.pathname === '/login' || location.pathname.startsWith('/product/');
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <>
@@ -34,7 +39,6 @@ function AppLayout({ cart, setCart, scrollToSection, homeRef, contactRef, aboutR
         <Navbar
           scrollToSection={scrollToSection}
           homeRef={homeRef}
-          contactRef={contactRef}
           cart={cart}
         />
       )}
@@ -51,7 +55,8 @@ function AppLayout({ cart, setCart, scrollToSection, homeRef, contactRef, aboutR
           }
         />
         <Route path="/about" element={<About />} />
-        <Route path="/menu" element={<Menu cart={cart} setCart={setCart} />} />
+        <Route path="/menu" element={<Menu setCart={setCart} />} />
+        <Route path="/product/:id" element={<ProductDetail cart={cart} setCart={setCart} />} />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { FaUser, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
@@ -8,28 +8,15 @@ function EditProfile() {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        location: "",
-        phone: "",
-        bio: "",
+        name: user?.name || "",
+        email: user?.email || "",
+        location: user?.location || "",
+        phone: user?.phone || "",
+        bio: user?.bio || "",
     });
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
-
-    // Load initial user details
-    useEffect(() => {
-        if (user) {
-            setFormData({
-                name: user.name || "",
-                email: user.email || "",
-                location: user.location || "",
-                phone: user.phone || "",
-                bio: user.bio || "",
-            });
-        }
-    }, [user]);
 
     const handleChange = (e) => {
         setFormData((prev) => ({
@@ -63,7 +50,7 @@ function EditProfile() {
             } else {
                 setError(result.error || "Failed to update profile.");
             }
-        } catch (err) {
+        } catch {
             setError("An unexpected error occurred. Please try again.");
         } finally {
             setLoading(false);

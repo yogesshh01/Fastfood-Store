@@ -153,7 +153,7 @@ const FOOD_ITEMS = [
 // Highlight matching search text
 const highlightText = (text, highlight) => {
   if (!highlight || !highlight.trim()) return text;
-  const regex = new RegExp(`(${highlight.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, "gi");
+  const regex = new RegExp(`(${highlight.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&')})`, "gi");
   const parts = text.split(regex);
   return parts.map((part, index) =>
     regex.test(part) ? (
@@ -166,9 +166,11 @@ const highlightText = (text, highlight) => {
   );
 };
 
-function Menu({ cart, setCart }) {
+function Menu({ setCart }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   const setSearchQuery = (val) => {
     if (val) {
@@ -458,7 +460,11 @@ function Menu({ cart, setCart }) {
                   {sectionItems.map((item) => (
                     <div
                       key={item.id}
-                      className="bg-white rounded-2xl flex flex-col overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 group"
+                      onClick={() => {
+                        setSelectedProduct(item);
+                        setQuantity(1);
+                      }}
+                      className="bg-white rounded-2xl flex flex-col overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 group cursor-pointer hover:-translate-y-1"
                     >
                       {/* Image Frame with Minimal Rating */}
                       <div className="relative aspect-[4/3] overflow-hidden bg-gray-50">
@@ -526,6 +532,135 @@ function Menu({ cart, setCart }) {
           })
         )}
       </div>
+
+      {/* Product Detail Modal */}
+      {selectedProduct && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 sm:p-6 flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-gray-900">{selectedProduct.name}</h2>
+              <button
+                onClick={() => setSelectedProduct(null)}
+                className="text-gray-500 hover:text-red-500 text-2xl p-2 hover:bg-gray-100 rounded-full transition"
+              >
+                <FaTimes />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-4 sm:p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Image */}
+                <div className="flex items-center justify-center bg-gray-50 rounded-xl p-4">
+                  <img
+                    src={selectedProduct.image}
+                    alt={selectedProduct.name}
+                    className="w-full h-80 object-cover rounded-lg"
+                  />
+                </div>
+
+                {/* Details */}
+                <div className="flex flex-col justify-between">
+                  {/* Category & Rating */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-bold">
+                        {selectedProduct.category}
+                      </span>
+                      <span className="flex items-center gap-1 bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm font-bold">
+                        <FaStar className="text-[12px]" />
+                        {selectedProduct.rating}
+                      </span>
+                    </div>
+
+                    {/* Dietary Tags */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {selectedProduct.veg && (
+                        <span className="bg-emerald-50 text-emerald-700 border border-emerald-100 font-bold px-2 py-1 rounded text-xs flex items-center gap-1">
+                          <FaLeaf className="text-[10px]" /> Vegetarian
+                        </span>
+                      )}
+                      {selectedProduct.spicy && (
+                        <span className="bg-red-50 text-red-700 border border-red-100 font-bold px-2 py-1 rounded text-xs flex items-center gap-1">
+                          <FaFire className="text-[10px]" /> Spicy
+                        </span>
+                      )}
+                      {selectedProduct.chefsChoice && (
+                        <span className="bg-amber-50 text-amber-700 border border-amber-100 font-bold px-2 py-1 rounded text-xs flex items-center gap-1">
+                          <FaStar className="text-[10px]" /> Chef's Choice
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-600 text-base leading-relaxed mb-6">
+                      {selectedProduct.description}
+                    </p>
+                  </div>
+
+                  {/* Price & Actions */}
+                  <div className="border-t border-gray-200 pt-6">
+                    {/* Price */}
+                    <div className="mb-6">
+                      <p className="text-gray-500 text-sm font-semibold mb-2">PRICE</p>
+                      <p className="text-4xl font-bold text-red-500">
+                        ${selectedProduct.price.toFixed(2)}
+                      </p>
+                    </div>
+
+                    {/* Quantity Selector */}
+                    <div className="mb-6">
+                      <p className="text-gray-500 text-sm font-semibold mb-3">QUANTITY</p>
+                      <div className="flex items-center gap-4 bg-gray-50 p-3 rounded-lg w-fit border border-gray-200">
+                        <button
+                          onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                          className="bg-white hover:bg-red-100 text-gray-700 font-bold w-8 h-8 rounded flex items-center justify-center transition border border-gray-200"
+                        >
+                          −
+                        </button>
+                        <span className="text-xl font-bold text-gray-900 min-w-8 text-center">
+                          {quantity}
+                        </span>
+                        <button
+                          onClick={() => setQuantity(quantity + 1)}
+                          className="bg-white hover:bg-red-100 text-gray-700 font-bold w-8 h-8 rounded flex items-center justify-center transition border border-gray-200"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Add to Cart Button */}
+                    <button
+                      onClick={() => {
+                        const item = { ...selectedProduct, quantity };
+                        setCart((prev) => {
+                          const existing = prev.find((i) => i.id === item.id);
+                          if (existing) {
+                            return prev.map((i) =>
+                              i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i
+                            );
+                          }
+                          return [...prev, item];
+                        });
+                        setToastMessage(`${selectedProduct.name} added to cart!`);
+                        setTimeout(() => setToastMessage(""), 3000);
+                        setSelectedProduct(null);
+                        setQuantity(1);
+                      }}
+                      className="w-full bg-red-500 hover:bg-red-600 active:scale-95 text-white font-bold py-4 px-6 rounded-lg flex items-center justify-center gap-2 text-lg shadow-lg hover:shadow-red-200 transition"
+                    >
+                      <FaShoppingCart size={20} />
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

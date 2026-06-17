@@ -8,7 +8,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useAuth } from '../../context/AuthContext';
 
-function Navbar({scrollToSection, homeRef, contactRef, cart = []}) {
+function Navbar({scrollToSection, homeRef, cart = []}) {
   const { user } = useAuth();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -133,7 +133,7 @@ function Navbar({scrollToSection, homeRef, contactRef, cart = []}) {
             title={user ? user.name : 'Sign In'}
           >
             {user ? (
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-red-400 to-red-600 text-white text-xs font-black flex items-center justify-center">
+              <div className="w-7 h-7 rounded-full bg-linear-to-br from-red-400 to-red-600 text-white text-xs font-black flex items-center justify-center">
                 {user.name?.charAt(0).toUpperCase()}
               </div>
             ) : (

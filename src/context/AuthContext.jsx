@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // src/context/AuthContext.jsx
 import { createContext, useContext, useState, useEffect } from 'react';
 import { generateToken, verifyToken, saveToken, getToken, removeToken, findUser, saveUser, getUsers } from '../utils/auth';

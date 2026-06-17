@@ -12,6 +12,7 @@ import cef1 from "../assets/images/cef1.jpg";
 import cef2 from "../assets/images/cef2.jpg";
 import cef3 from "../assets/images/cef3.jpg";
 import cef4 from "../assets/images/cef4.jpg";
+import { useNavigate } from "react-router-dom";
 
 const CATEGORIES = [
   { id: "all", name: "All Items", image: burger },
@@ -97,7 +98,10 @@ const CHEFS = [
   },
 ];
 
+
+
 function Landing({ aboutRef, homeRef, menuRef }) {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("All");
   const [timeLeft, setTimeLeft] = useState({
     hours: 24,
@@ -150,6 +154,7 @@ function Landing({ aboutRef, homeRef, menuRef }) {
   const filteredItems = activeCategory === "All"
     ? MENU_ITEMS
     : MENU_ITEMS.filter((item) => item.category === activeCategory);
+    
 
 
   return (
@@ -386,7 +391,8 @@ function Landing({ aboutRef, homeRef, menuRef }) {
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-3xl flex flex-col overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1"
+              onClick={() => navigate(`/product/${item.id}`)}
+              className="bg-white rounded-3xl flex flex-col overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 cursor-pointer"
             >
               <div className="overflow-hidden h-60 w-full relative">
                 <img
@@ -422,7 +428,10 @@ function Landing({ aboutRef, homeRef, menuRef }) {
 
         <div className="flex justify-center mt-10">
           <button
-            onClick={() => setActiveCategory("All")}
+            onClick={() => {
+              setActiveCategory("All");
+              navigate('/menu');
+            }}
             className="bg-red-600 hover:bg-red-700 active:scale-95 text-white px-6 py-2.5 rounded-full font-bold text-base transition-all duration-300 shadow-lg hover:shadow-red-600/20 hover:scale-105 cursor-pointer"
           >
             View Full Menu

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -13,7 +12,6 @@ import {
 } from "react-icons/fa";
 
 function Contact() {
-  const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
