@@ -50,6 +50,7 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
+  const [showPopup, setShowPopup] = useState(false);
 
   const product = MENU_ITEMS.find((item) => item.id === parseInt(id));
 
@@ -84,8 +85,7 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
       setCart([...cart, { ...product, quantity }]);
     }
 
-    alert(`${product.name} added to cart!`);
-    navigate("/cart");
+    setShowPopup(true);
   };
 
   return (
@@ -214,6 +214,42 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
               ))}
           </div>
         </div>
+      {/* Success Popup Modal */}
+      {showPopup && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border border-gray-100 animate-in fade-in zoom-in-95 duration-200">
+            {/* Animated Check Icon */}
+            <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-10 h-10 text-emerald-500 animate-bounce" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+
+            <h3 className="text-2xl font-black text-gray-900 mb-2">Added to Cart!</h3>
+            <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+              <span className="font-bold text-gray-800">{quantity}x</span> {product.name} has been successfully added to your shopping cart.
+            </p>
+
+            <div className="flex flex-col gap-3">
+              <button
+                onClick={() => {
+                  setShowPopup(false);
+                  navigate("/menu");
+                }}
+                className="w-full bg-red-500 hover:bg-red-600 active:scale-95 text-white font-bold py-3.5 rounded-2xl shadow-lg hover:shadow-red-200 transition text-sm cursor-pointer"
+              >
+                Go to Menu / Shop More
+              </button>
+              <button
+                onClick={() => navigate("/cart")}
+                className="w-full bg-gray-100 hover:bg-gray-200 active:scale-95 text-gray-700 font-bold py-3.5 rounded-2xl transition text-sm cursor-pointer"
+              >
+                View Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
     </div>
   );
