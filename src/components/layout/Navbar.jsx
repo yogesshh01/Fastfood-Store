@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -13,6 +13,35 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [navSearch, setNavSearch] = useState("");
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (isOpen) return;
+
+      if (currentScrollY < 10) {
+        setVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY > lastScrollY.current) {
+        if (currentScrollY > 50) {
+          setVisible(false);
+        }
+      } else {
+        setVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isOpen]);
   const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -42,7 +71,7 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
   };
 
   return (
-    <div className="fixed top-5 left-0 w-full z-50 px-4 md:px-10">
+    <div className={`fixed left-0 w-full z-50 px-4 md:px-10 transition-all duration-350 ease-in-out ${visible ? 'top-5' : '-top-28'}`}>
       <div className="bg-gray-100 rounded-2xl p-4 flex justify-between items-center shadow-md">
         
         {/* Logo */}
