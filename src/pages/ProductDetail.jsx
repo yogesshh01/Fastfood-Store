@@ -1,50 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaShoppingCart, FaLeaf, FaAward } from "react-icons/fa";
-
-// Menu items data
-const MENU_ITEMS = [
-  {
-    id: 1,
-    name: "Classic Smash Burger",
-    category: "Burger",
-    price: 13.99,
-    image: "/src/assets/images/burgerimg.jpg",
-    description: "Double smashed patty, melted cheddar, caramelized onions, pickles & signature house sauce.",
-  },
-  {
-    id: 2,
-    name: "Classic Margherita Pizza",
-    category: "Pizza",
-    price: 11.99,
-    image: "/src/assets/images/pizza.jpg",
-    description: "Wood-fired crispy crust topped with rich tomato sauce, fresh mozzarella, and aromatic basil.",
-  },
-  {
-    id: 3,
-    name: "Gourmet Chicken Wrap",
-    category: "Wrap",
-    price: 19.99,
-    image: "/src/assets/images/wrap.jpg",
-    description: "Warm grilled tortilla packed with seasoned chicken breast, fresh greens, tomatoes, and garlic aioli.",
-  },
-  {
-    id: 4,
-    name: "Sweet Chocolate Lava Cake",
-    category: "Dessert",
-    price: 15.99,
-    image: "/src/assets/images/desert.jpg",
-    description: "Rich chocolate cake with a warm molten center, served with fresh berries and vanilla ice cream.",
-  },
-  {
-    id: 5,
-    name: "Classic Cheese Burger",
-    category: "Burger",
-    price: 13.99,
-    image: "/src/assets/images/burgerimg.jpg",
-    description: "Juicy flame-grilled beef patty, sharp cheddar, crisp lettuce, ripe tomatoes, and special sauce.",
-  },
-];
+import { FOOD_ITEMS } from "../utils/foodData";
 
 export default function ProductDetail({ cart = [], setCart = () => {} }) {
   const { id } = useParams();
@@ -52,7 +9,7 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
   const [quantity, setQuantity] = useState(1);
   const [showPopup, setShowPopup] = useState(false);
 
-  const product = MENU_ITEMS.find((item) => item.id === parseInt(id));
+  const product = FOOD_ITEMS.find((item) => item.id === parseInt(id));
 
   if (!product) {
     return (
@@ -192,7 +149,7 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
         <div className="mt-20">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">More Delicious Items</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {MENU_ITEMS.filter((item) => item.id !== product.id)
+            {FOOD_ITEMS.filter((item) => item.id !== product.id)
               .slice(0, 4)
               .map((item) => (
                 <div
