@@ -176,18 +176,18 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
         </div>
       {/* Side Success Toast Notification */}
       {showPopup && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#0c1913]/95 backdrop-blur-lg border border-emerald-500/20 rounded-2xl shadow-2xl p-4 flex items-center gap-4 animate-in fade-in slide-in-from-bottom-5 duration-300 max-w-sm overflow-hidden">
+        <div className="fixed bottom-6 right-6 z-50 bg-white border border-gray-150 rounded-2xl shadow-2xl p-4 flex items-center gap-3.5 animate-in fade-in slide-in-from-bottom-5 duration-300 max-w-sm overflow-hidden min-w-[280px]">
           {/* Green check icon */}
-          <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center shrink-0 border border-emerald-500/25 shadow-lg shadow-emerald-500/10">
-            <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+          <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100 shadow-lg shadow-emerald-500/10">
+            <svg className="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
           {/* Text and Actions */}
           <div className="flex-1 min-w-0 pr-2">
-            <p className="text-sm font-extrabold text-white">Added to Cart!</p>
-            <p className="text-xs text-gray-300 truncate mt-0.5">
-              <span className="bg-emerald-500/15 text-emerald-300 border border-emerald-500/20 rounded-full px-2 py-0.5 text-[9px] font-black mr-1.5 uppercase">
+            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Added to Cart</p>
+            <p className="text-sm font-bold text-gray-800 truncate mt-1.5 leading-none">
+              <span className="bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-full px-2 py-0.5 text-[9px] font-black mr-1 uppercase">
                 {quantity}x
               </span> 
               {product.name}
@@ -196,7 +196,7 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
           {/* Action Button */}
           <button
             onClick={() => navigate("/cart")}
-            className="text-xs font-black text-white bg-emerald-600 hover:bg-emerald-500 hover:shadow-lg hover:shadow-emerald-500/20 px-3.5 py-2 rounded-xl active:scale-95 transition-all cursor-pointer shrink-0 whitespace-nowrap"
+            className="text-xs font-black text-red-500 hover:text-red-600 hover:underline cursor-pointer shrink-0 whitespace-nowrap ml-1"
           >
             View Cart →
           </button>
