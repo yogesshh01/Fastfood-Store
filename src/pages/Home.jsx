@@ -13,6 +13,7 @@ import cef2 from "../assets/images/cef2.jpg";
 import cef3 from "../assets/images/cef3.jpg";
 import cef4 from "../assets/images/cef4.jpg";
 import { useNavigate } from "react-router-dom";
+import { FOOD_ITEMS } from "../utils/foodData";
 
 const CATEGORIES = [
   { id: "all", name: "All Items", image: burger },
@@ -23,49 +24,6 @@ const CATEGORIES = [
 ];
 
 const MENU_CATEGORIES = ["All", "Pizza", "Burger", "Wrap", "Dessert"];
-
-const MENU_ITEMS = [
-  {
-    id: 1,
-    name: "Classic Smash Burger",
-    category: "Burger",
-    price: 13.99,
-    image: burger,
-    description: "Double smashed patty, melted cheddar, caramelized onions, pickles & signature house sauce.",
-  },
-  {
-    id: 2,
-    name: "Classic Margherita Pizza",
-    category: "Pizza",
-    price: 11.99,
-    image: pizza,
-    description: "Wood-fired crispy crust topped with rich tomato sauce, fresh mozzarella, and aromatic basil.",
-  },
-  {
-    id: 3,
-    name: "Gourmet Chicken Wrap",
-    category: "Wrap",
-    price: 19.99,
-    image: wrap,
-    description: "Warm grilled tortilla packed with seasoned chicken breast, fresh greens, tomatoes, and garlic aioli.",
-  },
-  {
-    id: 4,
-    name: "Sweet Chocolate Lava Cake",
-    category: "Dessert",
-    price: 15.99,
-    image: desert,
-    description: "Rich chocolate cake with a warm molten center, served with fresh berries and vanilla ice cream.",
-  },
-  {
-    id: 5,
-    name: "Classic Cheese Burger",
-    category: "Burger",
-    price: 13.99,
-    image: burger,
-    description: "Juicy flame-grilled beef patty, sharp cheddar, crisp lettuce, ripe tomatoes, and special sauce.",
-  },
-];
 
 const CHEFS = [
   {
@@ -152,8 +110,8 @@ function Landing({ aboutRef, homeRef, menuRef }) {
   }, []);
 
   const filteredItems = activeCategory === "All"
-    ? MENU_ITEMS
-    : MENU_ITEMS.filter((item) => item.category === activeCategory);
+    ? FOOD_ITEMS
+    : FOOD_ITEMS.filter((item) => item.category === activeCategory);
     
 
 
