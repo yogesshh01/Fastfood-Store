@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import burgerImg from "../assets/images/foodiimg.png";
+import heroVideo from "../assets/images/burger_hero_bg.mp4";
 import { FaPlay, FaShoppingCart, FaCalendarAlt, FaShippingFast, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaLeaf, FaAward, FaBookOpen, FaBolt } from "react-icons/fa";
 import restaurantInterior from "../assets/images/restaurant_interior.png";
 import burger from "../assets/images/burgerimg.jpg";
@@ -118,15 +119,18 @@ function Landing({ aboutRef, homeRef, menuRef }) {
   return (
     <>
       {/* Hero Section */}
-      <div ref={homeRef} className="relative w-full min-h-screen">
-        <img
-          src={burgerImg}
-          alt="Burger Hero"
-          className="w-full min-h-screen object-cover"
+      <div ref={homeRef} className="relative w-full min-h-screen overflow-hidden">
+        <video
+          src={heroVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-right"
         />
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent"></div>
 
         {/* Content */}
         <div className="absolute inset-0 flex items-center">
