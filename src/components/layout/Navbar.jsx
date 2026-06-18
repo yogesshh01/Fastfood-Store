@@ -94,7 +94,7 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
       <div className="bg-gray-100 dark:bg-gray-900 border border-transparent dark:border-gray-800 rounded-2xl p-4 flex justify-between items-center shadow-md transition-colors duration-300">
         
         {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer select-none text-gray-900 dark:text-white" onClick={() => navigate('/')}>
+        <div className="flex items-center gap-2 cursor-pointer select-none text-gray-900 dark:text-white logo-glow" onClick={() => navigate('/')}>
           <FastfoodIcon />
           <h1 className="font-bold text-2xl flex">
             Fast<span className="text-red-500">food</span>
