@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import burgerImg from "../assets/images/foodiimg.png";
-import heroVideo from "../assets/images/burger_hero_bg.mp4";
+import heroVideo from "../assets/images/pizza_bg.mp4";
 import { FaPlay, FaShoppingCart, FaCalendarAlt, FaShippingFast, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaLeaf, FaAward, FaBookOpen, FaBolt } from "react-icons/fa";
 import restaurantInterior from "../assets/images/restaurant_interior.png";
 import burger from "../assets/images/burgerimg.jpg";
