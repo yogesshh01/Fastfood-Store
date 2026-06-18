@@ -104,25 +104,41 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
         {/* Links */}
         <ul className="hidden lg:flex lg:gap-10 gap-5 font-bold text-gray-700 dark:text-gray-200">
           <li 
-            className="hover:underline hover:decoration-red-500 decoration-3 underline-offset-8 cursor-pointer" 
+            className={`decoration-3 underline-offset-8 cursor-pointer transition-all ${
+              location.pathname === '/' 
+                ? 'text-red-500 dark:text-red-400 underline decoration-red-500' 
+                : 'hover:underline hover:decoration-red-500'
+            }`} 
             onClick={() => handleNavClick("home", homeRef)}
           >
             Home
           </li>
           <li 
-            className="hover:underline hover:decoration-red-500 decoration-3 underline-offset-8 cursor-pointer"  
+            className={`decoration-3 underline-offset-8 cursor-pointer transition-all ${
+              location.pathname === '/about' 
+                ? 'text-red-500 dark:text-red-400 underline decoration-red-500' 
+                : 'hover:underline hover:decoration-red-500'
+            }`}  
             onClick={() => navigate('/about')}
           >
             About
           </li>
           <li 
-            className="hover:underline hover:decoration-red-500 decoration-3 underline-offset-8 cursor-pointer" 
+            className={`decoration-3 underline-offset-8 cursor-pointer transition-all ${
+              location.pathname === '/menu' || location.pathname.startsWith('/product')
+                ? 'text-red-500 dark:text-red-400 underline decoration-red-500' 
+                : 'hover:underline hover:decoration-red-500'
+            }`} 
             onClick={() => navigate('/menu')}
           >
             Menu
           </li>
           <li 
-            className="hover:underline hover:decoration-red-500 decoration-3 underline-offset-8 cursor-pointer" 
+            className={`decoration-3 underline-offset-8 cursor-pointer transition-all ${
+              location.pathname === '/contact' 
+                ? 'text-red-500 dark:text-red-400 underline decoration-red-500' 
+                : 'hover:underline hover:decoration-red-500'
+            }`} 
             onClick={() => navigate('/contact')}
           >
             Contact
@@ -164,12 +180,20 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
           {/* Cart Button */}
           <button
             onClick={handleCartClick}
-            className="relative p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 active:scale-95 transition-all cursor-pointer"
+            className={`relative p-2 rounded-lg active:scale-95 transition-all cursor-pointer ${
+              location.pathname === '/cart'
+                ? 'bg-red-500 text-white hover:bg-red-600 dark:bg-red-500 dark:text-white'
+                : 'hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200'
+            }`}
             title="Cart"
           >
             <ShoppingCartIcon fontSize="small" />
             {totalCartItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center leading-none">
+              <span className={`absolute -top-1 -right-1 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center leading-none ${
+                location.pathname === '/cart'
+                  ? 'bg-white text-red-500'
+                  : 'bg-red-500 text-white'
+              }`}>
                 {totalCartItems > 9 ? '9+' : totalCartItems}
               </span>
             )}
@@ -177,11 +201,19 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
           {/* Profile Button */}
           <button
             onClick={() => navigate(user ? '/profile' : '/login')}
-            className="relative p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 active:scale-95 transition-all cursor-pointer"
+            className={`relative p-2 rounded-lg active:scale-95 transition-all cursor-pointer ${
+              location.pathname === '/profile' || location.pathname === '/login' || location.pathname === '/editprofile'
+                ? 'bg-red-500 text-white hover:bg-red-600 dark:bg-red-500 dark:text-white'
+                : 'hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200'
+            }`}
             title={user ? user.name : 'Sign In'}
           >
             {user ? (
-              <div className="w-7 h-7 rounded-full bg-linear-to-br from-red-400 to-red-600 text-white text-xs font-black flex items-center justify-center">
+              <div className={`w-7 h-7 rounded-full text-xs font-black flex items-center justify-center ${
+                location.pathname === '/profile' || location.pathname === '/editprofile'
+                  ? 'bg-white text-red-500'
+                  : 'bg-linear-to-br from-red-400 to-red-600 text-white'
+              }`}>
                 {user.name?.charAt(0).toUpperCase()}
               </div>
             ) : (
@@ -211,11 +243,34 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
       {isOpen && (
         <div className="lg:hidden mt-2 bg-gray-100 dark:bg-gray-900 border border-transparent dark:border-gray-800 rounded-2xl p-5 shadow-lg transition-colors duration-300">
           <ul className="flex flex-col gap-5 font-bold text-gray-700 dark:text-gray-200">
-            <li className="cursor-pointer hover:text-red-500 transition" onClick={() => { handleNavClick("home", homeRef); setIsOpen(false); }}>Home</li>
-            <li className="cursor-pointer hover:text-red-500 transition" onClick={() => { navigate('/about'); setIsOpen(false); }}>About</li>
-            <li className="cursor-pointer hover:text-red-500 transition" onClick={() => { navigate('/menu'); setIsOpen(false); }}>Menu</li>
-            <li className="cursor-pointer hover:text-red-500 transition" onClick={() => { navigate('/contact'); setIsOpen(false); }}>Contact</li>
-            <li className="cursor-pointer hover:text-red-500 transition font-bold" onClick={() => { navigate(user ? '/profile' : '/login'); setIsOpen(false); }}>
+            <li 
+              className={`cursor-pointer transition ${location.pathname === '/' ? 'text-red-500 dark:text-red-400 font-extrabold' : 'hover:text-red-500'}`} 
+              onClick={() => { handleNavClick("home", homeRef); setIsOpen(false); }}
+            >
+              Home
+            </li>
+            <li 
+              className={`cursor-pointer transition ${location.pathname === '/about' ? 'text-red-500 dark:text-red-400 font-extrabold' : 'hover:text-red-500'}`} 
+              onClick={() => { navigate('/about'); setIsOpen(false); }}
+            >
+              About
+            </li>
+            <li 
+              className={`cursor-pointer transition ${location.pathname === '/menu' || location.pathname.startsWith('/product') ? 'text-red-500 dark:text-red-400 font-extrabold' : 'hover:text-red-500'}`} 
+              onClick={() => { navigate('/menu'); setIsOpen(false); }}
+            >
+              Menu
+            </li>
+            <li 
+              className={`cursor-pointer transition ${location.pathname === '/contact' ? 'text-red-500 dark:text-red-400 font-extrabold' : 'hover:text-red-500'}`} 
+              onClick={() => { navigate('/contact'); setIsOpen(false); }}
+            >
+              Contact
+            </li>
+            <li 
+              className={`cursor-pointer transition font-bold ${location.pathname === '/profile' || location.pathname === '/login' || location.pathname === '/editprofile' ? 'text-red-500 dark:text-red-400' : 'hover:text-red-500'}`} 
+              onClick={() => { navigate(user ? '/profile' : '/login'); setIsOpen(false); }}
+            >
               {user ? `👤 ${user.name}` : '🔑 Sign In'}
             </li>
             <li className="cursor-pointer hover:text-red-500 transition font-bold flex items-center gap-2" onClick={() => { toggleTheme(); setIsOpen(false); }}>
