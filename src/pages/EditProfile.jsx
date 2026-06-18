@@ -87,7 +87,7 @@ function EditProfile() {
                 )}
 
                 {/* Avatar Display */}
-                <div className="flex flex-col items-center mb-8 bg-gray-50 dark:bg-gray-950 border border-gray-100 dark:border-gray-850 rounded-2xl py-6">
+                <div className="flex flex-col items-center mb-8 bg-gray-50 dark:bg-gray-950 border border-gray-100 dark:border-gray-800 rounded-2xl py-6">
                     <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-white text-4xl font-black shadow-lg shadow-red-200 dark:shadow-red-950/30 uppercase">
                         {initialLetter}
                     </div>
@@ -116,7 +116,7 @@ function EditProfile() {
                                 value={formData.name}
                                 onChange={handleChange}
                                 placeholder="Enter your full name"
-                                className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl pl-10 pr-4 py-3.5 outline-none focus:border-red-500 focus:ring-4 focus:ring-red-500/5 transition text-sm font-semibold text-gray-800 dark:text-white"
+                                className="w-full bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl pl-10 pr-4 py-3.5 outline-none focus:border-red-500 focus:ring-4 focus:ring-red-500/5 transition text-sm font-semibold text-gray-800 dark:text-white"
                             />
                         </div>
                     </div>
@@ -136,7 +136,7 @@ function EditProfile() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 placeholder="Enter email address"
-                                className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl pl-10 pr-4 py-3.5 outline-none focus:border-red-500 focus:ring-4 focus:ring-red-500/5 transition text-sm font-semibold text-gray-800 dark:text-white"
+                                className="w-full bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl pl-10 pr-4 py-3.5 outline-none focus:border-red-500 focus:ring-4 focus:ring-red-500/5 transition text-sm font-semibold text-gray-800 dark:text-white"
                             />
                         </div>
                     </div>
@@ -156,7 +156,7 @@ function EditProfile() {
                                 value={formData.location}
                                 onChange={handleChange}
                                 placeholder="e.g. New York, USA"
-                                className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl pl-10 pr-4 py-3.5 outline-none focus:border-red-500 focus:ring-4 focus:ring-red-500/5 transition text-sm font-semibold text-gray-800 dark:text-white"
+                                className="w-full bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl pl-10 pr-4 py-3.5 outline-none focus:border-red-500 focus:ring-4 focus:ring-red-500/5 transition text-sm font-semibold text-gray-800 dark:text-white"
                             />
                         </div>
                     </div>
@@ -176,7 +176,7 @@ function EditProfile() {
                                 value={formData.phone}
                                 onChange={handleChange}
                                 placeholder="e.g. +1 234 567 890"
-                                className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl pl-10 pr-4 py-3.5 outline-none focus:border-red-500 focus:ring-4 focus:ring-red-500/5 transition text-sm font-semibold text-gray-800 dark:text-white"
+                                className="w-full bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl pl-10 pr-4 py-3.5 outline-none focus:border-red-500 focus:ring-4 focus:ring-red-500/5 transition text-sm font-semibold text-gray-800 dark:text-white"
                             />
                         </div>
                     </div>
@@ -196,7 +196,7 @@ function EditProfile() {
                                 value={formData.bio}
                                 onChange={handleChange}
                                 placeholder="Write something about yourself..."
-                                className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl pl-10 pr-4 py-3.5 outline-none resize-none focus:border-red-500 focus:ring-4 focus:ring-red-500/5 transition text-sm font-semibold text-gray-800 dark:text-white leading-relaxed"
+                                className="w-full bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl pl-10 pr-4 py-3.5 outline-none resize-none focus:border-red-500 focus:ring-4 focus:ring-red-500/5 transition text-sm font-semibold text-gray-800 dark:text-white leading-relaxed"
                             />
                         </div>
                     </div>
@@ -207,7 +207,7 @@ function EditProfile() {
                             type="button"
                             onClick={() => navigate("/profile")}
                             disabled={loading}
-                            className="border border-gray-200 dark:border-gray-850 text-gray-600 dark:text-gray-300 px-6 py-3 rounded-2xl font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition active:scale-95 text-sm cursor-pointer disabled:opacity-50"
+                            className="border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-300 px-6 py-3 rounded-2xl font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition active:scale-95 text-sm cursor-pointer disabled:opacity-50"
                         >
                             Cancel
                         </button>

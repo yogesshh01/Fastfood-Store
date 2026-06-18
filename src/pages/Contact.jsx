@@ -118,7 +118,7 @@ function Contact() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Message Sent! 🎉</h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm max-w-xs">
-                Thanks for reaching out, <span className="font-semibold text-gray-750 dark:text-gray-200">{form.name}</span>! We'll get back to you shortly.
+                Thanks for reaching out, <span className="font-semibold text-gray-700 dark:text-gray-200">{form.name}</span>! We'll get back to you shortly.
               </p>
               <button
                 onClick={() => { setSubmitted(false); setForm({ name: "", email: "", subject: "", message: "" }); }}
@@ -130,7 +130,7 @@ function Contact() {
           ) : (
             <>
               <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-1">Send a Message</h2>
-              <p className="text-gray-405 dark:text-gray-400 text-sm mb-7">Fill out the form and we'll respond as soon as possible.</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm mb-7">Fill out the form and we'll respond as soon as possible.</p>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 {/* Name + Email */}
@@ -235,7 +235,7 @@ function Contact() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-800 dark:text-white text-sm">Fastfood HQ</p>
-                  <p className="text-gray-400 dark:text-gray-405 text-xs mt-0.5">123 Gourmet Street, Downtown, NY 10001</p>
+                  <p className="text-gray-400 dark:text-gray-400 text-xs mt-0.5">123 Gourmet Street, Downtown, NY 10001</p>
                   <a
                     href="https://maps.google.com"
                     target="_blank"
@@ -262,7 +262,7 @@ function Contact() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-800 dark:text-white text-xs">Instagram</p>
-                  <p className="text-gray-400 dark:text-gray-405 text-[11px]">@fastfood.official</p>
+                  <p className="text-gray-400 dark:text-gray-400 text-[11px]">@fastfood.official</p>
                 </div>
               </a>
               <a
@@ -274,7 +274,7 @@ function Contact() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-800 dark:text-white text-xs">Facebook</p>
-                  <p className="text-gray-400 dark:text-gray-405 text-[11px]">fb.com/fastfoodofficial</p>
+                  <p className="text-gray-400 dark:text-gray-400 text-[11px]">fb.com/fastfoodofficial</p>
                 </div>
               </a>
               <a
@@ -286,7 +286,7 @@ function Contact() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-800 dark:text-white text-xs">Twitter / X</p>
-                  <p className="text-gray-400 dark:text-gray-405 text-[11px]">@fastfood</p>
+                  <p className="text-gray-400 dark:text-gray-400 text-[11px]">@fastfood</p>
                 </div>
               </a>
             </div>

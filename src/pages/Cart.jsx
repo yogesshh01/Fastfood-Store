@@ -195,7 +195,7 @@ function Cart({ cart, setCart }) {
                   onChange={(e) => { setPromoCode(e.target.value); setPromoError(""); }}
                   placeholder="e.g. FAST10"
                   disabled={promoApplied}
-                  className="flex-1 bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-850 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 disabled:opacity-60"
+                  className="flex-1 bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 disabled:opacity-60"
                 />
                 <button
                   onClick={handlePromo}
@@ -218,7 +218,7 @@ function Cart({ cart, setCart }) {
             <div className="border-t border-gray-100 dark:border-gray-800 pt-4 flex flex-col gap-3">
               <div className="flex justify-between text-sm text-gray-600 dark:text-gray-300">
                 <span>Subtotal</span>
-                <span className="font-semibold text-gray-850 dark:text-white">${subtotal.toFixed(2)}</span>
+                <span className="font-semibold text-gray-800 dark:text-white">${subtotal.toFixed(2)}</span>
               </div>
               {promoApplied && (
                 <div className="flex justify-between text-sm text-green-600 dark:text-green-400">
@@ -228,11 +228,11 @@ function Cart({ cart, setCart }) {
               )}
               <div className="flex justify-between text-sm text-gray-600 dark:text-gray-300">
                 <span>Delivery Fee</span>
-                <span className="font-semibold text-gray-850 dark:text-white">${DELIVERY_FEE.toFixed(2)}</span>
+                <span className="font-semibold text-gray-800 dark:text-white">${DELIVERY_FEE.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm text-gray-600 dark:text-gray-300">
                 <span>Tax (8%)</span>
-                <span className="font-semibold text-gray-850 dark:text-white">${tax.toFixed(2)}</span>
+                <span className="font-semibold text-gray-800 dark:text-white">${tax.toFixed(2)}</span>
               </div>
             </div>
 
@@ -252,7 +252,7 @@ function Cart({ cart, setCart }) {
 
             <button
               onClick={() => navigate("/menu")}
-              className="mt-3 w-full border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-850 text-gray-600 dark:text-gray-300 font-semibold py-3 rounded-xl transition-all text-sm cursor-pointer"
+              className="mt-3 w-full border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold py-3 rounded-xl transition-all text-sm cursor-pointer"
             >
               Continue Shopping
             </button>

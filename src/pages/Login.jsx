@@ -126,7 +126,7 @@ function Login() {
                 <FaGoogle className="text-red-400" /> Google
               </button>
               <button className="flex-1 flex items-center justify-center gap-2 border border-gray-200 dark:border-gray-800 rounded-xl py-2.5 text-sm font-semibold text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:scale-95 transition-all cursor-pointer">
-                <FaApple className="text-gray-850 dark:text-white" /> Apple
+                <FaApple className="text-black dark:text-white" /> Apple
               </button>
             </div>
 

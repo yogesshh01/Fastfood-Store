@@ -21,7 +21,7 @@ function Profile({ cart }) {
             <FaUser className="text-red-300 text-5xl" />
           </div>
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Not Signed In</h2>
-          <p className="text-gray-400 dark:text-gray-405 text-sm mb-8">Please sign in to view your profile.</p>
+          <p className="text-gray-400 dark:text-gray-400 text-sm mb-8">Please sign in to view your profile.</p>
           <button
             onClick={() => navigate("/login")}
             className="bg-red-500 hover:bg-red-600 active:scale-95 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-lg hover:shadow-red-200 cursor-pointer"
@@ -86,7 +86,7 @@ function Profile({ cart }) {
 
           {/* Actions */}
           <div className="flex gap-3 shrink-0">
-            <button onClick={handleEditProfile} className="flex items-center gap-2 border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-850 font-semibold text-sm px-4 py-2.5 rounded-xl transition-all cursor-pointer active:scale-95">
+            <button onClick={handleEditProfile} className="flex items-center gap-2 border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-semibold text-sm px-4 py-2.5 rounded-xl transition-all cursor-pointer active:scale-95">
               <FaEdit className="text-xs" /> Edit Profile
             </button>
             <button
@@ -104,15 +104,15 @@ function Profile({ cart }) {
           <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm p-5 flex flex-col justify-between">
             <div>
               <h3 className="font-bold text-gray-800 dark:text-white text-sm mb-3">About Me</h3>
-              <p className="text-gray-600 dark:text-gray-350 text-sm italic mb-4 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-sm italic mb-4 leading-relaxed">
                 "{user.bio || "Food lover and passionate developer."}"
               </p>
             </div>
             <div className="border-t border-gray-50 dark:border-gray-800 pt-3 flex flex-col gap-2">
-              <p className="text-xs text-gray-405 flex items-center gap-2">
+              <p className="text-xs text-gray-400 flex items-center gap-2">
                 <span className="font-bold text-gray-700 dark:text-gray-300">Phone:</span> {user.phone || "+1 234 567 890"}
               </p>
-              <p className="text-xs text-gray-405 flex items-center gap-2">
+              <p className="text-xs text-gray-400 flex items-center gap-2">
                 <span className="font-bold text-gray-700 dark:text-gray-300">Location:</span> {user.location || "New York, USA"}
               </p>
             </div>
@@ -142,7 +142,7 @@ function Profile({ cart }) {
             <div key={i} className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm p-5 flex flex-col items-center gap-2 hover:shadow-md transition-all">
               <div className="text-2xl">{s.icon}</div>
               <p className="font-black text-2xl text-gray-900 dark:text-white">{s.value}</p>
-              <p className="text-gray-400 dark:text-gray-450 text-xs font-medium">{s.label}</p>
+              <p className="text-gray-400 dark:text-gray-400 text-xs font-medium">{s.label}</p>
             </div>
           ))}
         </div>
@@ -180,7 +180,7 @@ function Profile({ cart }) {
               <h3 className="font-bold text-gray-800 dark:text-white text-sm mb-4">🛒 Cart Summary</h3>
               {cartCount === 0 ? (
                 <div className="text-center py-4">
-                  <p className="text-gray-400 dark:text-gray-450 text-xs mb-3">Your cart is empty</p>
+                  <p className="text-gray-400 dark:text-gray-400 text-xs mb-3">Your cart is empty</p>
                   <button onClick={() => navigate("/menu")} className="bg-red-500 hover:bg-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl cursor-pointer active:scale-95 transition-all">Browse Menu</button>
                 </div>
               ) : (
@@ -200,7 +200,7 @@ function Profile({ cart }) {
                   { label: "Contact Us", path: "/contact", icon: "📞" },
                   { label: "About Us", path: "/about", icon: "ℹ️" },
                 ].map((link, i) => (
-                  <button key={i} onClick={() => navigate(link.path)} className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-850 text-gray-600 dark:text-gray-300 hover:text-red-500 transition-all text-sm font-medium cursor-pointer text-left w-full">
+                  <button key={i} onClick={() => navigate(link.path)} className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-red-500 transition-all text-sm font-medium cursor-pointer text-left w-full">
                     <span>{link.icon}</span> {link.label}
                   </button>
                 ))}

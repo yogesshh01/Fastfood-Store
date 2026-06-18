@@ -88,7 +88,7 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
             </h1>
 
             {/* Description */}
-            <p className="text-gray-600 dark:text-gray-350 text-lg leading-relaxed mb-8">
+            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
               {product.description}
             </p>
 
@@ -176,7 +176,7 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
         </div>
       {/* Side Success Toast Notification */}
       {showPopup && (
-        <div className="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 rounded-2xl shadow-2xl p-4 flex items-center gap-3.5 animate-in fade-in slide-in-from-bottom-5 duration-300 max-w-sm overflow-hidden min-w-[280px]">
+        <div className="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl p-4 flex items-center gap-3.5 animate-in fade-in slide-in-from-bottom-5 duration-300 max-w-sm overflow-hidden min-w-[280px]">
           {/* Green check icon */}
           <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100 dark:border-emerald-900/50 shadow-lg shadow-emerald-500/10">
             <svg className="w-5 h-5 animate-pulse text-emerald-500" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
