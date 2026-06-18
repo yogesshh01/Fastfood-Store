@@ -1,5 +1,17 @@
 // src/utils/foodData.js
 
+import classicSmashBurger from "../assets/images/classic_smash_burger.jpg";
+import bbqBaconDeluxe from "../assets/images/bbq_bacon_deluxe.jpg";
+import spicyJalapenoBurger from "../assets/images/spicy_jalapeno_burger.jpg";
+import margheritaClassica from "../assets/images/margherita_classica.jpg";
+import spicyPepperoniFeast from "../assets/images/spicy_pepperoni_feast.jpg";
+import truffleMushroomGarden from "../assets/images/truffle_mushroom_garden.jpg";
+import chickenCaesarWrap from "../assets/images/chicken_caesar_wrap.jpg";
+import spicyMexicanWrap from "../assets/images/spicy_mexican_wrap.jpg";
+import veganGardenWrap from "../assets/images/vegan_garden_wrap.jpg";
+import moltenLavaCake from "../assets/images/molten_lava_cake.jpg";
+import newYorkCheesecake from "../assets/images/new_york_cheesecake.jpg";
+
 export const FOOD_ITEMS = [
   {
     id: 1,
@@ -8,7 +20,7 @@ export const FOOD_ITEMS = [
     price: 13.99,
     rating: 4.8,
     reviews: 142,
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=400",
+    image: classicSmashBurger,
     description: "Double smashed beef patty, melted cheddar, caramelized onions, pickles & signature house special sauce.",
     veg: false,
     spicy: false,
@@ -21,7 +33,7 @@ export const FOOD_ITEMS = [
     price: 15.49,
     rating: 4.9,
     reviews: 98,
-    image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&q=80&w=400",
+    image: bbqBaconDeluxe,
     description: "Crispy applewood bacon, double cheddar, smoky hickory BBQ sauce, and crispy onion rings.",
     veg: false,
     spicy: false,
@@ -34,7 +46,7 @@ export const FOOD_ITEMS = [
     price: 14.99,
     rating: 4.7,
     reviews: 76,
-    image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&q=80&w=400",
+    image: spicyJalapenoBurger,
     description: "Spiced beef patty, melted pepper jack cheese, grilled jalapeños, and fiery chipotle mayo.",
     veg: false,
     spicy: true,
@@ -47,7 +59,7 @@ export const FOOD_ITEMS = [
     price: 16.99,
     rating: 4.9,
     reviews: 184,
-    image: "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&q=80&w=400",
+    image: margheritaClassica,
     description: "Fresh mozzarella, organic basil leaves, signature San Marzano tomato sauce, and cold-pressed olive oil.",
     veg: true,
     spicy: false,
@@ -60,7 +72,7 @@ export const FOOD_ITEMS = [
     price: 18.49,
     rating: 4.8,
     reviews: 215,
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=400",
+    image: spicyPepperoniFeast,
     description: "Double pepperoni layers, spicy cup-and-char pepperoni, mozzarella, and a drizzle of hot honey.",
     veg: false,
     spicy: true,
@@ -73,7 +85,7 @@ export const FOOD_ITEMS = [
     price: 19.99,
     rating: 4.6,
     reviews: 58,
-    image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&q=80&w=400",
+    image: truffleMushroomGarden,
     description: "Creamy white sauce, wild forest mushrooms, fontina cheese, fresh baby arugula, and truffle oil.",
     veg: true,
     spicy: false,
@@ -86,7 +98,7 @@ export const FOOD_ITEMS = [
     price: 12.49,
     rating: 4.7,
     reviews: 112,
-    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=400",
+    image: chickenCaesarWrap,
     description: "Crispy breaded chicken tenders, crunchy romaine lettuce, shaved parmesan, and garlic Caesar dressing.",
     veg: false,
     spicy: false,
@@ -99,7 +111,7 @@ export const FOOD_ITEMS = [
     price: 11.99,
     rating: 4.8,
     reviews: 89,
-    image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&q=80&w=400",
+    image: spicyMexicanWrap,
     description: "Grilled lime-coriander chicken, black beans, sweet roasted corn, avocado chunks, and chipotle salsa.",
     veg: false,
     spicy: true,
@@ -112,7 +124,7 @@ export const FOOD_ITEMS = [
     price: 10.99,
     rating: 4.5,
     reviews: 45,
-    image: "https://images.unsplash.com/photo-1551028150-64b9f398f678?auto=format&fit=crop&q=80&w=400",
+    image: veganGardenWrap,
     description: "Grilled sweet peppers, zucchini, house-made roasted garlic hummus, and fresh organic baby spinach.",
     veg: true,
     spicy: false,
@@ -125,7 +137,7 @@ export const FOOD_ITEMS = [
     price: 8.99,
     rating: 4.9,
     reviews: 230,
-    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=400",
+    image: moltenLavaCake,
     description: "Warm dark chocolate cake with a gooey liquid chocolate core, served with vanilla bean ice cream.",
     veg: true,
     spicy: false,
@@ -138,7 +150,7 @@ export const FOOD_ITEMS = [
     price: 9.49,
     rating: 4.8,
     reviews: 154,
-    image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=400",
+    image: newYorkCheesecake,
     description: "Rich, dense, and creamy traditional cheesecake slice served with homemade sweet strawberry compote.",
     veg: true,
     spicy: false,

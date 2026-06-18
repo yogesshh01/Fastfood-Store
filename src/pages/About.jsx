@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaLeaf, FaAward, FaShippingFast, FaUtensils, FaFacebookF, FaTwitter, FaInstagram, FaChevronRight } from "react-icons/fa";
 import aboutHero from "../assets/images/restaurant_interior.png";
+import chefMarcus from "../assets/images/about_chef_marcus.jpg";
+import chefElena from "../assets/images/about_chef_elena.jpg";
+import chefKenji from "../assets/images/about_chef_kenji.jpg";
 
 // Milestones Data
 const MILESTONES = [
@@ -60,17 +63,17 @@ const ABOUT_CHEFS = [
   {
     name: "Marcus Aurelius",
     role: "Head Executive Chef",
-    img: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&q=80&w=400",
+    img: chefMarcus,
   },
   {
     name: "Elena Rostova",
     role: "Pastry & Dessert Specialist",
-    img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=400",
+    img: chefElena,
   },
   {
     name: "Kenji Sato",
     role: "Master Sauce Craftsman",
-    img: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=400",
+    img: chefKenji,
   },
 ];
 
