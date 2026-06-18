@@ -83,7 +83,7 @@ function About() {
   }, []);
 
   return (
-    <div className="w-full bg-[#FAF8F5] text-gray-900 overflow-x-hidden font-sans">
+    <div className="w-full bg-[#FAF8F5] dark:bg-gray-950 text-gray-900 dark:text-white overflow-x-hidden font-sans">
       {/* Hero Banner Section */}
       <div className="relative w-full h-[60vh] min-h-[480px] flex items-center justify-center overflow-hidden pt-28 pb-16">
         {/* Background Image with Parallax & Dark Overlay */}
@@ -95,7 +95,7 @@ function About() {
           />
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
           {/* Bottom blend to page background */}
-          <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#FAF8F5] to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#FAF8F5] dark:from-gray-950 to-transparent"></div>
         </div>
 
         {/* Content */}
@@ -123,24 +123,24 @@ function About() {
             <span className="text-red-500 font-extrabold text-sm uppercase tracking-wider">
               Cooking with Passion
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 dark:text-white leading-tight tracking-tight">
               We Believe Great Food <br />
               Heals the Soul
             </h2>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
               At Fastfood, our kitchen isn't just a kitchen; it's a dynamic culinary hub. We started as a group of friends passionate about local flavors, trying to make the absolute finest comfort meals without compromising on freshness or quality.
             </p>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
               Every burger patty is freshly pressed, every crust is hand-stretched, and every sauce recipe is formulated in-house. We strive to create a warm, inviting dining and ordering experience, making gourmet comfort foods accessible to everyone.
             </p>
 
             {/* Quick Metrics */}
-            <div className="grid grid-cols-3 gap-6 border-t border-gray-200 pt-8 mt-4 text-center">
+            <div className="grid grid-cols-3 gap-6 border-t border-gray-200 dark:border-gray-800 pt-8 mt-4 text-center">
               <div>
                 <span className="block text-3xl sm:text-4xl font-black text-red-500">
                   12+
                 </span>
-                <span className="text-xs sm:text-sm text-gray-500 font-bold mt-1 block">
+                <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-bold mt-1 block">
                   Years of Journey
                 </span>
               </div>
@@ -148,7 +148,7 @@ function About() {
                 <span className="block text-3xl sm:text-4xl font-black text-red-500">
                   25+
                 </span>
-                <span className="text-xs sm:text-sm text-gray-500 font-bold mt-1 block">
+                <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-bold mt-1 block">
                   Award Recipes
                 </span>
               </div>
@@ -156,7 +156,7 @@ function About() {
                 <span className="block text-3xl sm:text-4xl font-black text-red-500">
                   150k+
                 </span>
-                <span className="text-xs sm:text-sm text-gray-500 font-bold mt-1 block">
+                <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-bold mt-1 block">
                   Happy Foodies
                 </span>
               </div>
@@ -197,16 +197,16 @@ function About() {
       {/* ------------------------------------------------------------------------- */}
 
       {/* Core Values Section */}
-      <div className="bg-white py-20 border-y border-gray-100">
+      <div className="bg-white dark:bg-gray-900 py-20 border-y border-gray-100 dark:border-gray-800">
         <div className="px-6 md:px-16 lg:px-24 xl:px-32 max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <span className="text-red-500 font-extrabold text-sm uppercase tracking-wider">
               Our Foundations
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 mt-3 leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 dark:text-white mt-3 leading-tight tracking-tight">
               Values That Drive Us
             </h2>
-            <p className="text-gray-500 text-sm sm:text-base mt-4 max-w-xl mx-auto leading-relaxed">
+            <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base mt-4 max-w-xl mx-auto leading-relaxed">
               We focus on consistency, hygiene, and high culinary standards to make every meal a delight.
             </p>
           </div>
@@ -217,15 +217,15 @@ function About() {
               return (
                 <div
                   key={idx}
-                  className="bg-[#FAF8F5] p-8 rounded-3xl border border-gray-100 hover:border-red-500/10 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1.5 transition-all duration-300 group"
+                  className="bg-[#FAF8F5] dark:bg-gray-950 p-8 rounded-3xl border border-gray-100 dark:border-gray-800 hover:border-red-500/10 dark:hover:border-red-500/30 hover:shadow-xl hover:shadow-gray-200/50 dark:hover:shadow-black/20 hover:-translate-y-1.5 transition-all duration-300 group"
                 >
                   <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${val.color} flex items-center justify-center mb-6`}>
                     <IconComp className="text-2xl" />
                   </div>
-                  <h3 className="font-extrabold text-lg text-gray-950 group-hover:text-red-500 transition-colors">
+                  <h3 className="font-extrabold text-lg text-gray-950 dark:text-white group-hover:text-red-500 transition-colors">
                     {val.title}
                   </h3>
-                  <p className="text-gray-500 text-xs sm:text-sm mt-3 leading-relaxed">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-3 leading-relaxed">
                     {val.desc}
                   </p>
                 </div>
@@ -243,7 +243,7 @@ function About() {
           <span className="text-red-500 font-extrabold text-sm uppercase tracking-wider">
             Our Timeline
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 mt-3 leading-tight tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 dark:text-white mt-3 leading-tight tracking-tight">
             Our Historic Milestones
           </h2>
         </div>
@@ -252,19 +252,19 @@ function About() {
           {MILESTONES.map((stone, idx) => (
             <div key={idx} className="relative group">
               {/* Pulsing Bullet Point */}
-              <div className="absolute -left-[41px] sm:-left-[57px] top-1 bg-red-500 border-4 border-white rounded-full w-5 h-5 flex items-center justify-center group-hover:scale-125 transition-transform duration-300">
+              <div className="absolute -left-[41px] sm:-left-[57px] top-1 bg-red-500 border-4 border-white dark:border-gray-950 rounded-full w-5 h-5 flex items-center justify-center group-hover:scale-125 transition-transform duration-300">
                 <span className="absolute w-5 h-5 rounded-full bg-red-500 animate-ping opacity-30 -z-10"></span>
               </div>
 
               {/* Milestone Details */}
-              <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                 <span className="inline-block bg-[#160704] text-amber-500 px-3 py-1 rounded-lg text-xs font-black tracking-wider uppercase">
                   {stone.year}
                 </span>
-                <h3 className="font-extrabold text-lg sm:text-xl text-gray-950 mt-3">
+                <h3 className="font-extrabold text-lg sm:text-xl text-gray-950 dark:text-white mt-3">
                   {stone.title}
                 </h3>
-                <p className="text-gray-500 text-xs sm:text-sm mt-2 leading-relaxed">
+                <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-2 leading-relaxed">
                   {stone.desc}
                 </p>
               </div>
@@ -276,13 +276,13 @@ function About() {
       {/* ------------------------------------------------------------------------- */}
 
       {/* Meet Our Chefs Section */}
-      <div className="bg-white py-20 border-t border-gray-100">
+      <div className="bg-white dark:bg-gray-900/40 py-20 border-t border-gray-100 dark:border-gray-800">
         <div className="px-6 md:px-16 lg:px-24 xl:px-32 max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <span className="text-red-500 font-extrabold text-sm uppercase tracking-wider">
               The Masters
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 mt-3 leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 dark:text-white mt-3 leading-tight tracking-tight">
               Meet Our Culinary Leaders
             </h2>
           </div>
@@ -291,7 +291,7 @@ function About() {
             {ABOUT_CHEFS.map((chef, idx) => (
               <div
                 key={idx}
-                className="bg-[#FAF8F5] rounded-3xl overflow-hidden border border-gray-100 hover:border-red-500/10 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group"
+                className="bg-[#FAF8F5] dark:bg-gray-950 rounded-3xl overflow-hidden border border-gray-100 dark:border-gray-800 hover:border-red-500/10 dark:hover:border-red-500/30 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group"
               >
                 {/* Image Container */}
                 <div className="relative aspect-[4/5] overflow-hidden">
@@ -317,7 +317,7 @@ function About() {
 
                 {/* Details */}
                 <div className="p-6 text-center">
-                  <h3 className="font-extrabold text-lg text-gray-950 group-hover:text-red-500 transition-colors">
+                  <h3 className="font-extrabold text-lg text-gray-950 dark:text-white group-hover:text-red-500 transition-colors">
                     {chef.name}
                   </h3>
                   <p className="text-gray-400 text-xs font-bold mt-1 uppercase tracking-wider">

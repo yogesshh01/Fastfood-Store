@@ -6,6 +6,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useAuth } from '../../context/AuthContext';
 
 function Navbar({scrollToSection, homeRef, cart = []}) {
@@ -15,6 +17,23 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
   const [navSearch, setNavSearch] = useState("");
   const [visible, setVisible] = useState(true);
   const lastScrollY = useRef(0);
+
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'light';
+  });
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,10 +91,10 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
 
   return (
     <div className={`fixed left-0 w-full z-50 px-4 md:px-10 transition-all duration-350 ease-in-out ${visible ? 'top-5' : '-top-28'}`}>
-      <div className="bg-gray-100 rounded-2xl p-4 flex justify-between items-center shadow-md">
+      <div className="bg-gray-100 dark:bg-gray-900 border border-transparent dark:border-gray-800 rounded-2xl p-4 flex justify-between items-center shadow-md transition-colors duration-300">
         
         {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer select-none" onClick={() => navigate('/')}>
+        <div className="flex items-center gap-2 cursor-pointer select-none text-gray-900 dark:text-white" onClick={() => navigate('/')}>
           <FastfoodIcon />
           <h1 className="font-bold text-2xl flex">
             Fast<span className="text-red-500">food</span>
@@ -83,7 +102,7 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
         </div>
 
         {/* Links */}
-        <ul className="hidden lg:flex lg:gap-10 gap-5 font-bold">
+        <ul className="hidden lg:flex lg:gap-10 gap-5 font-bold text-gray-700 dark:text-gray-200">
           <li 
             className="hover:underline hover:decoration-red-500 decoration-3 underline-offset-8 cursor-pointer" 
             onClick={() => handleNavClick("home", homeRef)}
@@ -122,13 +141,13 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
                 onChange={(e) => setNavSearch(e.target.value)}
                 onKeyDown={handleSearchSubmit}
                 onBlur={() => { if (!navSearch) setShowSearch(false); }}
-                className="bg-gray-200 rounded-lg px-3 py-2 w-44 focus:outline-none focus:ring-2 focus:ring-red-500/30 text-sm transition-all"
+                className="bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-white rounded-lg px-3 py-2 w-44 focus:outline-none focus:ring-2 focus:ring-red-500/30 text-sm transition-all"
                 placeholder="Search menu..."
               />
             )}
             <button
               onClick={() => setShowSearch(!showSearch)}
-              className="p-2 rounded-lg hover:bg-gray-200 active:scale-95 transition-all cursor-pointer"
+              className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 active:scale-95 transition-all cursor-pointer"
               title="Search"
             >
               <SearchIcon fontSize="small" />
@@ -145,7 +164,7 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
           {/* Cart Button */}
           <button
             onClick={handleCartClick}
-            className="relative p-2 rounded-lg hover:bg-gray-200 active:scale-95 transition-all cursor-pointer"
+            className="relative p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 active:scale-95 transition-all cursor-pointer"
             title="Cart"
           >
             <ShoppingCartIcon fontSize="small" />
@@ -158,7 +177,7 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
           {/* Profile Button */}
           <button
             onClick={() => navigate(user ? '/profile' : '/login')}
-            className="relative p-2 rounded-lg hover:bg-gray-200 active:scale-95 transition-all cursor-pointer"
+            className="relative p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 active:scale-95 transition-all cursor-pointer"
             title={user ? user.name : 'Sign In'}
           >
             {user ? (
@@ -169,11 +188,19 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
               <AccountCircleIcon fontSize="small" />
             )}
           </button>
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 active:scale-95 transition-all cursor-pointer"
+            title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+          >
+            {theme === 'light' ? <DarkModeIcon fontSize="small" /> : <LightModeIcon fontSize="small" />}
+          </button>
         </div>
 
         {/* Mobile menu trigger */}
         <button
-          className="lg:hidden cursor-pointer"
+          className="lg:hidden cursor-pointer text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800 p-2 rounded-lg transition-all"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <CloseIcon /> : <MenuIcon />}
@@ -182,14 +209,25 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
 
       {/* Mobile Menu Panel */}
       {isOpen && (
-        <div className="lg:hidden mt-2 bg-gray-100 rounded-2xl p-5 shadow-lg">
-          <ul className="flex flex-col gap-5 font-bold">
+        <div className="lg:hidden mt-2 bg-gray-100 dark:bg-gray-900 border border-transparent dark:border-gray-800 rounded-2xl p-5 shadow-lg transition-colors duration-300">
+          <ul className="flex flex-col gap-5 font-bold text-gray-700 dark:text-gray-200">
             <li className="cursor-pointer hover:text-red-500 transition" onClick={() => { handleNavClick("home", homeRef); setIsOpen(false); }}>Home</li>
             <li className="cursor-pointer hover:text-red-500 transition" onClick={() => { navigate('/about'); setIsOpen(false); }}>About</li>
             <li className="cursor-pointer hover:text-red-500 transition" onClick={() => { navigate('/menu'); setIsOpen(false); }}>Menu</li>
             <li className="cursor-pointer hover:text-red-500 transition" onClick={() => { navigate('/contact'); setIsOpen(false); }}>Contact</li>
             <li className="cursor-pointer hover:text-red-500 transition font-bold" onClick={() => { navigate(user ? '/profile' : '/login'); setIsOpen(false); }}>
               {user ? `👤 ${user.name}` : '🔑 Sign In'}
+            </li>
+            <li className="cursor-pointer hover:text-red-500 transition font-bold flex items-center gap-2" onClick={() => { toggleTheme(); setIsOpen(false); }}>
+              {theme === 'light' ? (
+                <>
+                  <DarkModeIcon fontSize="small" /> Dark Mode
+                </>
+              ) : (
+                <>
+                  <LightModeIcon fontSize="small" /> Light Mode
+                </>
+              )}
             </li>
           </ul>
 
@@ -199,7 +237,7 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
               value={navSearch}
               onChange={(e) => setNavSearch(e.target.value)}
               onKeyDown={handleSearchSubmit}
-              className="bg-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500/30 text-sm"
+              className="bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500/30 text-sm"
               placeholder="Search menu..."
             />
             <div className="flex gap-3">
@@ -211,7 +249,7 @@ function Navbar({scrollToSection, homeRef, cart = []}) {
               </button>
               <button
                 onClick={handleCartClick}
-                className="relative flex items-center justify-center gap-1 bg-gray-200 px-4 py-2 rounded-lg font-bold hover:bg-gray-300 active:scale-95 transition-all cursor-pointer"
+                className="relative flex items-center justify-center gap-1 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 px-4 py-2 rounded-lg font-bold hover:bg-gray-300 dark:hover:bg-gray-700 active:scale-95 transition-all cursor-pointer"
               >
                 <ShoppingCartIcon fontSize="small" />
                 {totalCartItems > 0 && (

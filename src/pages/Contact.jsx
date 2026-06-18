@@ -50,40 +50,40 @@ function Contact() {
       icon: <FaPhoneAlt />,
       title: "Call Us",
       lines: ["+1 (800) 123-4567", "+1 (800) 765-4321"],
-      color: "bg-blue-50 text-blue-500",
+      color: "bg-blue-50 dark:bg-blue-950/30 text-blue-500 dark:text-blue-400 border dark:border-blue-900/20",
     },
     {
       icon: <FaEnvelope />,
       title: "Email Us",
       lines: ["support@fastfood.com", "orders@fastfood.com"],
-      color: "bg-red-50 text-red-500",
+      color: "bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400 border dark:border-red-900/20",
     },
     {
       icon: <FaMapMarkerAlt />,
       title: "Visit Us",
       lines: ["123 Gourmet Street", "Downtown, NY 10001"],
-      color: "bg-emerald-50 text-emerald-500",
+      color: "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-500 dark:text-emerald-400 border dark:border-emerald-900/20",
     },
     {
       icon: <FaClock />,
       title: "Opening Hours",
       lines: ["Mon–Sat: 10am – 11pm", "Sunday: 11am – 10pm"],
-      color: "bg-amber-50 text-amber-500",
+      color: "bg-amber-50 dark:bg-amber-950/30 text-amber-500 dark:text-amber-400 border dark:border-amber-900/20",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] pt-28 pb-16 font-sans">
+    <div className="min-h-screen bg-[#FAF8F5] dark:bg-gray-950 pt-28 pb-16 font-sans">
 
       {/* Hero Header */}
       <div className="text-center px-4 mb-14">
-        <span className="inline-block bg-red-50 text-red-500 border border-red-200 text-xs font-extrabold uppercase tracking-widest px-5 py-2 rounded-full mb-4">
+        <span className="inline-block bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400 border border-red-200 dark:border-red-900/30 text-xs font-extrabold uppercase tracking-widest px-5 py-2 rounded-full mb-4">
           Get In Touch
         </span>
-        <h1 className="text-4xl sm:text-5xl font-black text-gray-900 leading-tight">
+        <h1 className="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white leading-tight">
           We'd Love to <span className="text-red-500">Hear From You</span>
         </h1>
-        <p className="text-gray-500 mt-3 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        <p className="text-gray-500 dark:text-gray-400 mt-3 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
           Have a question, feedback, or a special order request? Reach out and our team will get back to you within 24 hours.
         </p>
       </div>
@@ -93,14 +93,14 @@ function Contact() {
         {infoCards.map((card, i) => (
           <div
             key={i}
-            className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 p-6 flex flex-col items-center text-center gap-3 group"
+            className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-300 p-6 flex flex-col items-center text-center gap-3 group"
           >
             <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-lg ${card.color} group-hover:scale-110 transition-transform duration-300`}>
               {card.icon}
             </div>
-            <h3 className="font-bold text-gray-800 text-sm">{card.title}</h3>
+            <h3 className="font-bold text-gray-800 dark:text-white text-sm">{card.title}</h3>
             {card.lines.map((line, j) => (
-              <p key={j} className="text-gray-500 text-xs leading-relaxed">{line}</p>
+              <p key={j} className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">{line}</p>
             ))}
           </div>
         ))}
@@ -110,15 +110,15 @@ function Contact() {
       <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-5 gap-8">
 
         {/* Contact Form */}
-        <div className="lg:col-span-3 bg-white rounded-3xl border border-gray-100 shadow-sm p-8">
+        <div className="lg:col-span-3 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl shadow-sm p-8">
           {submitted ? (
             <div className="flex flex-col items-center justify-center h-full text-center py-12 gap-4">
-              <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-2">
+              <div className="w-20 h-20 bg-green-50 dark:bg-green-950/30 rounded-full flex items-center justify-center mb-2 border dark:border-green-900/30">
                 <FaCheckCircle className="text-green-500 text-4xl animate-bounce" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800">Message Sent! 🎉</h3>
-              <p className="text-gray-500 text-sm max-w-xs">
-                Thanks for reaching out, <span className="font-semibold text-gray-700">{form.name}</span>! We'll get back to you shortly.
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Message Sent! 🎉</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm max-w-xs">
+                Thanks for reaching out, <span className="font-semibold text-gray-750 dark:text-gray-200">{form.name}</span>! We'll get back to you shortly.
               </p>
               <button
                 onClick={() => { setSubmitted(false); setForm({ name: "", email: "", subject: "", message: "" }); }}
@@ -129,33 +129,33 @@ function Contact() {
             </div>
           ) : (
             <>
-              <h2 className="text-2xl font-bold text-gray-800 mb-1">Send a Message</h2>
-              <p className="text-gray-400 text-sm mb-7">Fill out the form and we'll respond as soon as possible.</p>
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-1">Send a Message</h2>
+              <p className="text-gray-405 dark:text-gray-400 text-sm mb-7">Fill out the form and we'll respond as soon as possible.</p>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 {/* Name + Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="text-xs font-semibold text-gray-600 mb-1.5 block">Full Name *</label>
+                    <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1.5 block">Full Name *</label>
                     <input
                       type="text"
                       name="name"
                       value={form.name}
                       onChange={handleChange}
                       placeholder="John Doe"
-                      className={`w-full bg-gray-50 border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.name ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:ring-red-500/20"}`}
+                      className={`w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.name ? "border-red-400 focus:ring-red-200" : "border-gray-200 dark:border-gray-800 focus:ring-red-500/20"}`}
                     />
                     {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
                   </div>
                   <div>
-                    <label className="text-xs font-semibold text-gray-600 mb-1.5 block">Email Address *</label>
+                    <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1.5 block">Email Address *</label>
                     <input
                       type="email"
                       name="email"
                       value={form.email}
                       onChange={handleChange}
                       placeholder="john@example.com"
-                      className={`w-full bg-gray-50 border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.email ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:ring-red-500/20"}`}
+                      className={`w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.email ? "border-red-400 focus:ring-red-200" : "border-gray-200 dark:border-gray-800 focus:ring-red-500/20"}`}
                     />
                     {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
                   </div>
@@ -163,27 +163,27 @@ function Contact() {
 
                 {/* Subject */}
                 <div>
-                  <label className="text-xs font-semibold text-gray-600 mb-1.5 block">Subject</label>
+                  <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1.5 block">Subject</label>
                   <input
                     type="text"
                     name="subject"
                     value={form.subject}
                     onChange={handleChange}
                     placeholder="e.g. Order inquiry, Feedback..."
-                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all"
+                    className="w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all"
                   />
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label className="text-xs font-semibold text-gray-600 mb-1.5 block">Message *</label>
+                  <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1.5 block">Message *</label>
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={handleChange}
                     rows={5}
                     placeholder="Write your message here..."
-                    className={`w-full bg-gray-50 border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all resize-none ${errors.message ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:ring-red-500/20"}`}
+                    className={`w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all resize-none ${errors.message ? "border-red-400 focus:ring-red-200" : "border-gray-200 dark:border-gray-800 focus:ring-red-500/20"}`}
                   />
                   {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
                 </div>
@@ -216,7 +216,7 @@ function Contact() {
         <div className="lg:col-span-2 flex flex-col gap-6">
 
           {/* Map */}
-          <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden flex-1">
+          <div className="bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden flex-1 flex flex-col">
             <iframe
               title="Fastfood Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968459391!3d40.74844797932764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1623862901234!5m2!1sen!2sus"
@@ -228,14 +228,14 @@ function Contact() {
               referrerPolicy="no-referrer-when-downgrade"
               className="w-full"
             />
-            <div className="p-5">
+            <div className="p-5 flex-1 flex flex-col justify-center">
               <div className="flex items-start gap-3">
-                <div className="bg-red-50 text-red-500 rounded-xl p-2.5 shrink-0 mt-0.5">
+                <div className="bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400 rounded-xl p-2.5 shrink-0 mt-0.5 border dark:border-red-900/30">
                   <FaMapMarkerAlt className="text-sm" />
                 </div>
                 <div>
-                  <p className="font-bold text-gray-800 text-sm">Fastfood HQ</p>
-                  <p className="text-gray-400 text-xs mt-0.5">123 Gourmet Street, Downtown, NY 10001</p>
+                  <p className="font-bold text-gray-800 dark:text-white text-sm">Fastfood HQ</p>
+                  <p className="text-gray-400 dark:text-gray-405 text-xs mt-0.5">123 Gourmet Street, Downtown, NY 10001</p>
                   <a
                     href="https://maps.google.com"
                     target="_blank"
@@ -250,43 +250,43 @@ function Contact() {
           </div>
 
           {/* Social Links */}
-          <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6">
-            <h3 className="font-bold text-gray-800 text-sm mb-4">Follow Us</h3>
+          <div className="bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm p-6">
+            <h3 className="font-bold text-gray-800 dark:text-white text-sm mb-4">Follow Us</h3>
             <div className="flex flex-col gap-3">
               <a
                 href="#"
-                className="flex items-center gap-3 p-3 rounded-xl bg-pink-50 hover:bg-pink-100 transition-all group cursor-pointer"
+                className="flex items-center gap-3 p-3 rounded-xl bg-pink-50 dark:bg-pink-950/20 hover:bg-pink-100 dark:hover:bg-pink-950/40 border dark:border-pink-900/10 transition-all group cursor-pointer"
               >
                 <div className="w-9 h-9 bg-gradient-to-br from-pink-500 to-rose-500 text-white rounded-xl flex items-center justify-center text-sm">
                   <FaInstagram />
                 </div>
                 <div>
-                  <p className="font-bold text-gray-800 text-xs">Instagram</p>
-                  <p className="text-gray-400 text-[11px]">@fastfood.official</p>
+                  <p className="font-bold text-gray-800 dark:text-white text-xs">Instagram</p>
+                  <p className="text-gray-400 dark:text-gray-405 text-[11px]">@fastfood.official</p>
                 </div>
               </a>
               <a
                 href="#"
-                className="flex items-center gap-3 p-3 rounded-xl bg-blue-50 hover:bg-blue-100 transition-all group cursor-pointer"
+                className="flex items-center gap-3 p-3 rounded-xl bg-blue-50 dark:bg-blue-950/20 hover:bg-blue-100 dark:hover:bg-blue-950/40 border dark:border-blue-900/10 transition-all group cursor-pointer"
               >
                 <div className="w-9 h-9 bg-blue-600 text-white rounded-xl flex items-center justify-center text-sm">
                   <FaFacebook />
                 </div>
                 <div>
-                  <p className="font-bold text-gray-800 text-xs">Facebook</p>
-                  <p className="text-gray-400 text-[11px]">fb.com/fastfoodofficial</p>
+                  <p className="font-bold text-gray-800 dark:text-white text-xs">Facebook</p>
+                  <p className="text-gray-400 dark:text-gray-405 text-[11px]">fb.com/fastfoodofficial</p>
                 </div>
               </a>
               <a
                 href="#"
-                className="flex items-center gap-3 p-3 rounded-xl bg-sky-50 hover:bg-sky-100 transition-all group cursor-pointer"
+                className="flex items-center gap-3 p-3 rounded-xl bg-sky-50 dark:bg-sky-950/20 hover:bg-sky-100 dark:hover:bg-sky-950/40 border dark:border-sky-900/10 transition-all group cursor-pointer"
               >
                 <div className="w-9 h-9 bg-sky-400 text-white rounded-xl flex items-center justify-center text-sm">
                   <FaTwitter />
                 </div>
                 <div>
-                  <p className="font-bold text-gray-800 text-xs">Twitter / X</p>
-                  <p className="text-gray-400 text-[11px]">@fastfood</p>
+                  <p className="font-bold text-gray-800 dark:text-white text-xs">Twitter / X</p>
+                  <p className="text-gray-400 dark:text-gray-405 text-[11px]">@fastfood</p>
                 </div>
               </a>
             </div>

@@ -49,9 +49,9 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Header */}
-      <div className="bg-white shadow-sm sticky top-0 z-10">
+      <div className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-10 border-b dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-4">
           <button
             onClick={() => navigate("/")}
@@ -67,7 +67,7 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {/* Product Image */}
-          <div className="flex items-center justify-center bg-white rounded-2xl p-6 shadow-sm">
+          <div className="flex items-center justify-center bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border dark:border-gray-800">
             <img
               src={product.image}
               alt={product.name}
@@ -78,23 +78,23 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
           {/* Product Info */}
           <div className="flex flex-col justify-center">
             {/* Category Badge */}
-            <span className="bg-red-100 text-red-500 px-4 py-2 rounded-full text-sm font-bold w-fit mb-4">
+            <span className="bg-red-100 dark:bg-red-950/30 text-red-500 dark:text-red-400 border dark:border-red-900/30 px-4 py-2 rounded-full text-sm font-bold w-fit mb-4">
               {product.category}
             </span>
 
             {/* Title */}
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               {product.name}
             </h1>
 
             {/* Description */}
-            <p className="text-gray-600 text-lg leading-relaxed mb-8">
+            <p className="text-gray-600 dark:text-gray-350 text-lg leading-relaxed mb-8">
               {product.description}
             </p>
 
             {/* Price */}
             <div className="mb-8">
-              <p className="text-gray-500 text-sm font-semibold mb-2">PRICE</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm font-semibold mb-2">PRICE</p>
               <p className="text-5xl font-bold text-red-500">
                 ${product.price.toFixed(2)}
               </p>
@@ -102,20 +102,20 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
 
             {/* Quantity Selector */}
             <div className="mb-8">
-              <p className="text-gray-500 text-sm font-semibold mb-3">QUANTITY</p>
-              <div className="flex items-center gap-4 bg-white p-4 rounded-lg w-fit border border-gray-200">
+              <p className="text-gray-500 dark:text-gray-400 text-sm font-semibold mb-3">QUANTITY</p>
+              <div className="flex items-center gap-4 bg-white dark:bg-gray-900 p-4 rounded-lg w-fit border border-gray-200 dark:border-gray-800">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="bg-gray-100 hover:bg-red-100 text-gray-700 font-bold w-10 h-10 rounded flex items-center justify-center transition"
+                  className="bg-gray-100 dark:bg-gray-800 hover:bg-red-100 dark:hover:bg-red-950/20 text-gray-700 dark:text-gray-300 font-bold w-10 h-10 rounded flex items-center justify-center transition"
                 >
                   −
                 </button>
-                <span className="text-2xl font-bold text-gray-900 min-w-12 text-center">
+                <span className="text-2xl font-bold text-gray-900 dark:text-white min-w-12 text-center">
                   {quantity}
                 </span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="bg-gray-100 hover:bg-red-100 text-gray-700 font-bold w-10 h-10 rounded flex items-center justify-center transition"
+                  className="bg-gray-100 dark:bg-gray-800 hover:bg-red-100 dark:hover:bg-red-950/20 text-gray-700 dark:text-gray-300 font-bold w-10 h-10 rounded flex items-center justify-center transition"
                 >
                   +
                 </button>
@@ -132,12 +132,12 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
             </button>
 
             {/* Features */}
-            <div className="space-y-3 pt-6 border-t border-gray-200">
-              <div className="flex items-center gap-3 text-gray-700">
+            <div className="space-y-3 pt-6 border-t border-gray-200 dark:border-gray-800">
+              <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                 <FaLeaf className="text-green-500" size={20} />
                 <span>Fresh & Quality Ingredients</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-700">
+              <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                 <FaAward className="text-yellow-500" size={20} />
                 <span>Chef's Signature Recipe</span>
               </div>
@@ -147,7 +147,7 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
 
         {/* Related Products Section */}
         <div className="mt-20">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">More Delicious Items</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">More Delicious Items</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {FOOD_ITEMS.filter((item) => item.id !== product.id)
               .slice(0, 4)
@@ -155,7 +155,7 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
                 <div
                   key={item.id}
                   onClick={() => navigate(`/product/${item.id}`)}
-                  className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg cursor-pointer transition-all hover:-translate-y-1"
+                  className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-lg border dark:border-gray-800 cursor-pointer transition-all hover:-translate-y-1"
                 >
                   <div className="h-48 overflow-hidden">
                     <img
@@ -164,8 +164,8 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                     />
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-bold text-gray-900">{item.name}</h3>
+                  <div className="p-4 bg-white dark:bg-gray-900">
+                    <h3 className="font-bold text-gray-900 dark:text-white">{item.name}</h3>
                     <p className="text-red-500 font-bold text-lg mt-2">
                       ${item.price.toFixed(2)}
                     </p>
@@ -176,18 +176,18 @@ export default function ProductDetail({ cart = [], setCart = () => {} }) {
         </div>
       {/* Side Success Toast Notification */}
       {showPopup && (
-        <div className="fixed bottom-6 right-6 z-50 bg-white border border-gray-150 rounded-2xl shadow-2xl p-4 flex items-center gap-3.5 animate-in fade-in slide-in-from-bottom-5 duration-300 max-w-sm overflow-hidden min-w-[280px]">
+        <div className="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 rounded-2xl shadow-2xl p-4 flex items-center gap-3.5 animate-in fade-in slide-in-from-bottom-5 duration-300 max-w-sm overflow-hidden min-w-[280px]">
           {/* Green check icon */}
-          <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100 shadow-lg shadow-emerald-500/10">
-            <svg className="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+          <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100 dark:border-emerald-900/50 shadow-lg shadow-emerald-500/10">
+            <svg className="w-5 h-5 animate-pulse text-emerald-500" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
           {/* Text and Actions */}
           <div className="flex-1 min-w-0 pr-2">
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Added to Cart</p>
-            <p className="text-sm font-bold text-gray-800 truncate mt-1.5 leading-none">
-              <span className="bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-full px-2 py-0.5 text-[9px] font-black mr-1 uppercase">
+            <p className="text-[10px] font-black text-gray-400 dark:text-gray-400 uppercase tracking-widest leading-none">Added to Cart</p>
+            <p className="text-sm font-bold text-gray-800 dark:text-white truncate mt-1.5 leading-none">
+              <span className="bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/30 rounded-full px-2 py-0.5 text-[9px] font-black mr-1 uppercase">
                 {quantity}x
               </span> 
               {product.name}

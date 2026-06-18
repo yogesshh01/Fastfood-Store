@@ -142,20 +142,20 @@ function Menu({ setCart }) {
   };
 
   return (
-    <div className="w-full bg-[#FAF8F5] text-gray-900 overflow-x-clip font-sans min-h-screen pb-16">
+    <div className="w-full bg-[#FAF8F5] dark:bg-gray-950 text-gray-900 dark:text-white overflow-x-clip font-sans min-h-screen pb-16">
       {/* Premium Toast Alert */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-white border border-gray-150 rounded-2xl shadow-2xl p-4 flex items-center gap-3.5 animate-in fade-in slide-in-from-bottom-5 duration-300 max-w-sm overflow-hidden min-w-[280px]">
+        <div className="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 rounded-2xl shadow-2xl p-4 flex items-center gap-3.5 animate-in fade-in slide-in-from-bottom-5 duration-300 max-w-sm overflow-hidden min-w-[280px]">
           {/* Green check icon */}
-          <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100 shadow-lg shadow-emerald-500/10">
-            <svg className="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+          <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100 dark:border-emerald-900/50 shadow-lg shadow-emerald-500/10">
+            <svg className="w-5 h-5 animate-pulse text-emerald-500" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
           {/* Text and Actions */}
           <div className="flex-1 min-w-0 pr-2">
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Added to Cart</p>
-            <p className="text-sm font-bold text-gray-800 truncate mt-1.5 leading-none">{toastMessage}</p>
+            <p className="text-[10px] font-black text-gray-400 dark:text-gray-400 uppercase tracking-widest leading-none">Added to Cart</p>
+            <p className="text-sm font-bold text-gray-800 dark:text-white truncate mt-1.5 leading-none">{toastMessage}</p>
           </div>
           {/* Action Button */}
           <button
@@ -179,12 +179,12 @@ function Menu({ setCart }) {
           />
           <div className="absolute inset-0 bg-black/65"></div>
           {/* Bottom blend transition */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FAF8F5] to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FAF8F5] dark:from-gray-950 to-transparent"></div>
         </div>
 
         {/* Content - Simple & Professional */}
         <div className="relative z-10 text-center px-6 max-w-3xl mx-auto flex flex-col items-center gap-4">
-          <span className="text-red-500 font-extrabold text-xs sm:text-sm uppercase tracking-widest bg-red-50 px-5 py-2 rounded-full border border-red-200 shadow-xs">
+          <span className="text-red-500 font-extrabold text-xs sm:text-sm uppercase tracking-widest bg-red-50 dark:bg-red-950/20 px-5 py-2 rounded-full border border-red-200 dark:border-red-900/30 shadow-xs">
             Our Menu
           </span>
           <h1 className="text-white text-4xl sm:text-5xl font-black mt-2 tracking-tight leading-tight">
@@ -201,7 +201,7 @@ function Menu({ setCart }) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search dishes, ingredients..."
-              className="w-full bg-white text-gray-900 rounded-full pl-11 pr-11 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/30 transition-all placeholder:text-gray-400 border border-gray-100"
+              className="w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white rounded-full pl-11 pr-11 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/30 transition-all placeholder:text-gray-400 border border-gray-100 dark:border-gray-800"
             />
             <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
             {searchQuery && (
@@ -218,9 +218,9 @@ function Menu({ setCart }) {
 
       {/* STICKY CATEGORY NAV BAR */}
       {!(searchQuery.trim() !== "" && totalFilteredItems === 0) && (
-        <div className="sticky top-[84px] z-30 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-4 px-6">
+        <div className="sticky top-[84px] z-30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800 py-4 px-6">
           <div className="max-w-7xl mx-auto flex justify-center items-center gap-3 overflow-x-auto scrollbar-none">
-            <span className="text-gray-400 text-xs uppercase font-extrabold tracking-wider mr-4 hidden md:inline">
+            <span className="text-gray-400 dark:text-gray-400 text-xs uppercase font-extrabold tracking-wider mr-4 hidden md:inline">
               Quick Jump:
             </span>
             {menuSections.map((sec, idx) => {
@@ -236,7 +236,7 @@ function Menu({ setCart }) {
                   className={`font-extrabold text-sm px-6 py-2.5 rounded-xl transition-all duration-300 flex items-center gap-2 cursor-pointer whitespace-nowrap border ${
                     isActive
                       ? "bg-red-500 text-white border-red-500 shadow-md shadow-red-500/20 scale-[1.02]"
-                      : "bg-white text-gray-700 border-gray-200 hover:border-red-500/30 hover:bg-red-50 hover:text-red-500"
+                      : "bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-800 hover:border-red-500/30 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-500 dark:hover:text-red-400"
                   }`}
                 >
                   <span className="text-base">{sec.icon}</span>
@@ -254,19 +254,19 @@ function Menu({ setCart }) {
       {/* SPOTLIGHT SPECIAL DEAL BANNER */}
       {!searchQuery.trim() && (
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 xl:px-32 mt-12">
-          <div className="bg-white border border-gray-100 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-sm hover:shadow-md transition-all duration-300">
             <div className="flex items-center gap-5">
-              <div className="bg-red-50 text-red-500 rounded-2xl p-4 flex items-center justify-center shrink-0">
+              <div className="bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400 rounded-2xl p-4 flex items-center justify-center shrink-0">
                 <FaPercentage className="text-2xl animate-pulse" />
               </div>
               <div>
-                <span className="bg-red-100 text-red-700 px-2.5 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider">
+                <span className="bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300 px-2.5 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider">
                   Deal of the Day
                 </span>
-                <h3 className="font-bold text-lg sm:text-xl text-gray-900 mt-2">
+                <h3 className="font-bold text-lg sm:text-xl text-gray-900 dark:text-white mt-2">
                   Order BBQ Bacon Deluxe & Get Free Cold Shake!
                 </h3>
-                <p className="text-gray-500 text-xs sm:text-sm mt-1">
+                <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-1">
                   Add the legendary smoky BBQ bacon burger to your order today and unlock an instant custom beverage treat.
                 </p>
               </div>
@@ -286,12 +286,12 @@ function Menu({ setCart }) {
       {/* DYNAMIC FOOD SECTIONS */}
       <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 xl:px-32 py-12 flex flex-col gap-20">
         {searchQuery.trim() !== "" && totalFilteredItems === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 px-6 text-center bg-white rounded-[32px] border border-gray-100 max-w-2xl mx-auto w-full shadow-xs">
-            <div className="bg-red-50 text-red-500 rounded-full p-6 mb-6">
+          <div className="flex flex-col items-center justify-center py-20 px-6 text-center bg-white dark:bg-gray-900 rounded-[32px] border border-gray-100 dark:border-gray-800 max-w-2xl mx-auto w-full shadow-xs">
+            <div className="bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400 rounded-full p-6 mb-6">
               <FaSearch className="text-4xl" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">No matching items found</h3>
-            <p className="text-gray-500 max-w-md mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No matching items found</h3>
+            <p className="text-gray-500 dark:text-gray-400 max-w-md mb-8">
               We couldn't find anything matching "{searchQuery}". Try checking for spelling errors or search for another dish.
             </p>
             <button
@@ -311,16 +311,16 @@ function Menu({ setCart }) {
             return (
               <div key={sectionIdx} ref={getSectionRef(sec.id)} id={sec.id} className={`scroll-mt-32 ${sec.id !== 'burger' ? 'pt-6 md:pt-8' : ''}`}>
                 {/* Section Header */}
-                <div className="border-b border-gray-100 pb-3 mb-8 flex items-end justify-between">
+                <div className="border-b border-gray-100 dark:border-gray-800 pb-3 mb-8 flex items-end justify-between">
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                       <span>{sec.icon}</span>
                       <span>{sec.name}</span>
-                      <span className="text-xs font-normal text-gray-400 bg-gray-50 border border-gray-100 px-2 py-0.5 rounded-full ml-1">
+                      <span className="text-xs font-normal text-gray-400 bg-gray-50 dark:bg-gray-950 border border-gray-100 dark:border-gray-800 px-2 py-0.5 rounded-full ml-1">
                         {sectionItems.length} {sectionItems.length === 1 ? 'item' : 'items'}
                       </span>
                     </h2>
-                    <p className="text-gray-400 text-xs sm:text-sm mt-1 max-w-xl">
+                    <p className="text-gray-400 dark:text-gray-400 text-xs sm:text-sm mt-1 max-w-xl">
                       {sec.desc}
                     </p>
                   </div>
@@ -332,10 +332,10 @@ function Menu({ setCart }) {
                     <div
                       key={item.id}
                       onClick={() => navigate(`/product/${item.id}`)}
-                      className="bg-white rounded-2xl flex flex-col overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 group cursor-pointer hover:-translate-y-1"
+                      className="bg-white dark:bg-gray-900 rounded-2xl flex flex-col overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-800 group cursor-pointer hover:-translate-y-1"
                     >
                       {/* Image Frame with Minimal Rating */}
-                      <div className="relative aspect-[4/3] overflow-hidden bg-gray-50">
+                      <div className="relative aspect-[4/3] overflow-hidden bg-gray-50 dark:bg-gray-950">
                         <img
                           src={item.image}
                           alt={item.name}
@@ -350,36 +350,36 @@ function Menu({ setCart }) {
                       </div>
 
                       {/* Details */}
-                      <div className="p-5 flex flex-col grow bg-white">
-                        <h3 className="font-bold text-lg text-gray-900 group-hover:text-red-500 transition-colors duration-200 leading-tight">
+                      <div className="p-5 flex flex-col grow bg-white dark:bg-gray-900">
+                        <h3 className="font-bold text-lg text-gray-900 dark:text-white group-hover:text-red-500 transition-colors duration-200 leading-tight">
                           {highlightText(item.name, searchQuery)}
                         </h3>
 
                         {/* Dietary Tags inside Details */}
                         <div className="flex flex-wrap gap-1.5 mt-2">
                           {item.veg && (
-                            <span className="bg-emerald-50 text-emerald-700 border border-emerald-100 font-extrabold px-2 py-0.5 rounded text-[10px] tracking-wide uppercase flex items-center gap-1">
+                            <span className="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/50 font-extrabold px-2 py-0.5 rounded text-[10px] tracking-wide uppercase flex items-center gap-1">
                               <FaLeaf className="text-[9px]" /> Veg
                             </span>
                           )}
                           {item.spicy && (
-                            <span className="bg-red-50 text-red-700 border border-red-100 font-extrabold px-2 py-0.5 rounded text-[10px] tracking-wide uppercase flex items-center gap-1">
+                            <span className="bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border border-red-100 dark:border-red-900/50 font-extrabold px-2 py-0.5 rounded text-[10px] tracking-wide uppercase flex items-center gap-1">
                               <FaFire className="text-[9px]" /> Spicy
                             </span>
                           )}
                           {item.chefsChoice && (
-                            <span className="bg-amber-50 text-amber-700 border border-amber-100 font-extrabold px-2 py-0.5 rounded text-[10px] tracking-wide uppercase flex items-center gap-1">
+                            <span className="bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border border-amber-100 dark:border-amber-900/50 font-extrabold px-2 py-0.5 rounded text-[10px] tracking-wide uppercase flex items-center gap-1">
                               <FaStar className="text-[9px]" /> Chef's Spec
                             </span>
                           )}
                         </div>
 
-                        <p className="text-gray-500 text-xs sm:text-sm mt-3 leading-relaxed grow">
+                        <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-3 leading-relaxed grow">
                           {highlightText(item.description, searchQuery)}
                         </p>
 
                         {/* Price & Add Action */}
-                        <div className="flex justify-between items-center mt-5 border-t border-gray-100 pt-4">
+                        <div className="flex justify-between items-center mt-5 border-t border-gray-100 dark:border-gray-800 pt-4">
                           <span className="text-red-500 font-extrabold text-xl">
                             ${item.price.toFixed(2)}
                           </span>

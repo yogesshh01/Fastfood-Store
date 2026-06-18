@@ -174,15 +174,15 @@ function Landing({ aboutRef, homeRef, menuRef }) {
       </div>
 
       {/* Category Section */}
-      <div className="h-fit w-full bg-orange-50/50 py-16 px-6 md:px-16 lg:px-24 xl:px-32" ref={aboutRef}>
+      <div className="h-fit w-full bg-orange-50/50 dark:bg-gray-950/20 py-16 px-6 md:px-16 lg:px-24 xl:px-32" ref={aboutRef}>
         <div className="text-center">
           <p className="text-red-500 text-xl font-semibold uppercase tracking-wider">
             What We Offer
           </p>
-          <h1 className="flex justify-center items-center sm:text-5xl text-3xl sm:mt-4 mt-2 font-bold text-gray-900">
+          <h1 className="flex justify-center items-center sm:text-5xl text-3xl sm:mt-4 mt-2 font-bold text-gray-900 dark:text-white">
             Browse by <span className="text-red-500 ml-3">Category</span>
           </h1>
-          <p className="mt-4 sm:text-lg text-sm text-gray-600 max-w-xl mx-auto">
+          <p className="mt-4 sm:text-lg text-sm text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
             From sizzling burgers to exotic world cuisines - find your favourite in our menu.
           </p>
         </div>
@@ -198,15 +198,15 @@ function Landing({ aboutRef, homeRef, menuRef }) {
                   setActiveCategory(normalizedCategory);
                   menuRef.current?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className={`bg-white rounded-3xl p-6 w-full flex flex-col items-center cursor-pointer transition-all duration-300 border hover:scale-105 hover:shadow-lg ${isActive
+                className={`bg-white dark:bg-gray-900 rounded-3xl p-6 w-full flex flex-col items-center cursor-pointer transition-all duration-300 border hover:scale-105 hover:shadow-lg ${isActive
                     ? "border-red-500 shadow-md ring-2 ring-red-500/20"
-                    : "border-gray-100 shadow-sm"
+                    : "border-gray-100 dark:border-gray-800 shadow-sm"
                   }`}
               >
                 <div className="h-32 w-32 rounded-2xl overflow-hidden shadow-inner">
                   <img src={cat.image} alt={cat.name} className="h-full w-full object-cover transition-transform duration-300 hover:scale-110" />
                 </div>
-                <h3 className={`font-bold mt-4 text-center transition-colors ${isActive ? "text-red-500" : "text-gray-800"}`}>
+                <h3 className={`font-bold mt-4 text-center transition-colors ${isActive ? "text-red-500" : "text-gray-800 dark:text-gray-200"}`}>
                   {cat.name}
                 </h3>
               </div>
@@ -216,7 +216,7 @@ function Landing({ aboutRef, homeRef, menuRef }) {
       </div>
 
       {/* Our Story Section */}
-      <div ref={aboutRef} className="w-full py-20 px-6 md:px-16 lg:px-24 xl:px-32 bg-white">
+      <div ref={aboutRef} className="w-full py-20 px-6 md:px-16 lg:px-24 xl:px-32 bg-white dark:bg-gray-900/40">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side: Images Collage */}
           <div className="relative w-full flex items-center justify-center lg:justify-start">
@@ -237,7 +237,7 @@ function Landing({ aboutRef, homeRef, menuRef }) {
             </div>
 
             {/* Inset smaller image */}
-            <div className="absolute -bottom-10 right-0 sm:right-6 lg:-right-4 w-48 sm:w-64 aspect-square rounded-2xl overflow-hidden border-4 border-white shadow-2xl z-10 hidden sm:block">
+            <div className="absolute -bottom-10 right-0 sm:right-6 lg:-right-4 w-48 sm:w-64 aspect-square rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl z-10 hidden sm:block">
               <img
                 src={pizza}
                 alt="Signature dish close up"
@@ -252,52 +252,52 @@ function Landing({ aboutRef, homeRef, menuRef }) {
               <p className="text-red-500 font-serif italic text-lg sm:text-xl">
                 Our Story
               </p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 text-gray-900 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white leading-tight">
                 We Invite You to Visit <br className="hidden sm:inline" />
                 Our <span className="text-red-500">Food Restaurant</span>
               </h1>
               <div className="w-12 h-1 bg-red-500 mt-4 rounded-full"></div>
             </div>
 
-            <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
+            <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base leading-relaxed">
               Founded in 2012, Sarab began as a small corner joint with a big dream - to serve food that brings people together. Today we're proud to serve thousands of happy customers every week with the same passion that started it all.
             </p>
 
             <div className="flex flex-col gap-5 mt-2">
               {/* Highlight 1 */}
-              <div className="flex gap-4 items-start hover:bg-gray-50 p-2.5 -mx-2.5 rounded-2xl transition duration-300">
-                <div className="bg-red-50 text-red-500 rounded-xl p-3 flex items-center justify-center shrink-0">
+              <div className="flex gap-4 items-start hover:bg-gray-50 dark:hover:bg-gray-800/40 p-2.5 -mx-2.5 rounded-2xl transition duration-300">
+                <div className="bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400 rounded-xl p-3 flex items-center justify-center shrink-0">
                   <FaLeaf className="text-2xl" />
                 </div>
                 <div>
-                  <h4 className="font-extrabold text-gray-900 text-base">100% Fresh Ingredients</h4>
-                  <p className="text-gray-400 text-xs sm:text-sm mt-1 leading-relaxed">
+                  <h4 className="font-extrabold text-gray-900 dark:text-white text-base">100% Fresh Ingredients</h4>
+                  <p className="text-gray-400 dark:text-gray-400 text-xs sm:text-sm mt-1 leading-relaxed">
                     We source locally and sustainably. Every ingredient is hand-picked daily for maximum freshness.
                   </p>
                 </div>
               </div>
 
               {/* Highlight 2 */}
-              <div className="flex gap-4 items-start hover:bg-gray-50 p-2.5 -mx-2.5 rounded-2xl transition duration-300">
-                <div className="bg-amber-50 text-amber-500 rounded-xl p-3 flex items-center justify-center shrink-0">
+              <div className="flex gap-4 items-start hover:bg-gray-50 dark:hover:bg-gray-800/40 p-2.5 -mx-2.5 rounded-2xl transition duration-300">
+                <div className="bg-amber-50 dark:bg-amber-950/30 text-amber-500 dark:text-amber-400 rounded-xl p-3 flex items-center justify-center shrink-0">
                   <FaAward className="text-2xl" />
                 </div>
                 <div>
-                  <h4 className="font-extrabold text-gray-900 text-base">Award-Winning Recipes</h4>
-                  <p className="text-gray-400 text-xs sm:text-sm mt-1 leading-relaxed">
+                  <h4 className="font-extrabold text-gray-900 dark:text-white text-base">Award-Winning Recipes</h4>
+                  <p className="text-gray-400 dark:text-gray-400 text-xs sm:text-sm mt-1 leading-relaxed">
                     Our signature recipes have won national culinary awards 5 years in a row.
                   </p>
                 </div>
               </div>
 
               {/* Highlight 3 */}
-              <div className="flex gap-4 items-start hover:bg-gray-50 p-2.5 -mx-2.5 rounded-2xl transition duration-300">
-                <div className="bg-emerald-50 text-emerald-500 rounded-xl p-3 flex items-center justify-center shrink-0">
+              <div className="flex gap-4 items-start hover:bg-gray-50 dark:hover:bg-gray-800/40 p-2.5 -mx-2.5 rounded-2xl transition duration-300">
+                <div className="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-500 dark:text-emerald-400 rounded-xl p-3 flex items-center justify-center shrink-0">
                   <FaShippingFast className="text-2xl" />
                 </div>
                 <div>
-                  <h4 className="font-extrabold text-gray-900 text-base">Lightning-Fast Delivery</h4>
-                  <p className="text-gray-400 text-xs sm:text-sm mt-1 leading-relaxed">
+                  <h4 className="font-extrabold text-gray-900 dark:text-white text-base">Lightning-Fast Delivery</h4>
+                  <p className="text-gray-400 dark:text-gray-400 text-xs sm:text-sm mt-1 leading-relaxed">
                     Order online and get hot, fresh food at your door in under 25 minutes, guaranteed.
                   </p>
                 </div>
@@ -313,15 +313,13 @@ function Landing({ aboutRef, homeRef, menuRef }) {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Menu Section */}
-      <div className="h-fit w-full bg-orange-100/30 py-20 px-6 md:px-16 lg:px-24 xl:px-32" ref={menuRef}>
+      </div>      {/* Menu Section */}
+      <div className="h-fit w-full bg-orange-100/30 dark:bg-gray-950/10 py-20 px-6 md:px-16 lg:px-24 xl:px-32" ref={menuRef}>
         <div className="text-center">
           <p className="text-red-500 text-xl font-semibold uppercase tracking-wider">
             What's Cooking
           </p>
-          <h1 className="flex justify-center items-center sm:text-5xl text-3xl mt-4 font-bold text-gray-900">
+          <h1 className="flex justify-center items-center sm:text-5xl text-3xl mt-4 font-bold text-gray-900 dark:text-white">
             Our Delicious <span className="text-red-500 ml-3">Menu</span>
           </h1>
         </div>
@@ -335,7 +333,7 @@ function Landing({ aboutRef, homeRef, menuRef }) {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-6 py-2.5 rounded-2xl font-bold cursor-pointer transition-all duration-300 shadow-sm ${activeCategory === cat
                     ? "bg-red-500 text-white shadow-red-200 shadow-lg scale-105"
-                    : "bg-white text-gray-700 hover:bg-red-500 hover:text-white"
+                    : "bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-red-500 hover:text-white dark:hover:bg-red-500 dark:hover:text-white"
                   }`}
               >
                 {cat}
@@ -350,7 +348,7 @@ function Landing({ aboutRef, homeRef, menuRef }) {
             <div
               key={item.id}
               onClick={() => navigate(`/product/${item.id}`)}
-              className="bg-white rounded-3xl flex flex-col overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 cursor-pointer"
+              className="bg-white dark:bg-gray-900 rounded-3xl flex flex-col overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800 hover:-translate-y-1 cursor-pointer"
             >
               <div className="overflow-hidden h-60 w-full relative">
                 <img
@@ -358,16 +356,16 @@ function Landing({ aboutRef, homeRef, menuRef }) {
                   alt={item.name}
                   className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
                 />
-                <span className="absolute top-4 right-4 bg-white/95 backdrop-blur-xs text-red-500 font-bold px-3 py-1 rounded-full text-xs shadow-sm">
+                <span className="absolute top-4 right-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xs text-red-500 font-bold px-3 py-1 rounded-full text-xs shadow-sm">
                   {item.category}
                 </span>
               </div>
 
               <div className="p-6 flex flex-col grow">
-                <h3 className="font-bold text-lg text-gray-950">
+                <h3 className="font-bold text-lg text-gray-950 dark:text-white">
                   {item.name}
                 </h3>
-                <p className="text-gray-500 text-sm mt-2 grow leading-relaxed">
+                <p className="text-gray-500 dark:text-gray-400 text-sm mt-2 grow leading-relaxed">
                   {item.description}
                 </p>
 
@@ -481,7 +479,7 @@ function Landing({ aboutRef, homeRef, menuRef }) {
           <p className="text-lg font-bold text-red-500 uppercase tracking-wider">
             Food Showcase
           </p>
-          <h1 className="sm:text-5xl text-3xl font-bold flex justify-center items-center mt-2 text-gray-900">
+          <h1 className="sm:text-5xl text-3xl font-bold flex justify-center items-center mt-2 text-gray-900 dark:text-white">
             Let's See Our <span className="text-red-500 ml-2">Fast Food</span>
           </h1>
         </div>
@@ -532,12 +530,12 @@ function Landing({ aboutRef, homeRef, menuRef }) {
       </div>
 
       {/* Chefs Section */}
-      <div className="w-full h-fit py-16 px-6 md:px-16 lg:px-24 xl:px-32 bg-orange-50/30">
+      <div className="w-full h-fit py-16 px-6 md:px-16 lg:px-24 xl:px-32 bg-orange-50/30 dark:bg-gray-950/10">
         <div className="text-center">
           <h3 className="text-red-500 text-lg font-bold uppercase tracking-wider">
             The Culinary Team
           </h3>
-          <h1 className="flex justify-center items-center lg:text-5xl text-3xl font-bold mt-2 text-gray-900">
+          <h1 className="flex justify-center items-center lg:text-5xl text-3xl font-bold mt-2 text-gray-900 dark:text-white">
             Meet Our Expert <span className="ml-2 text-red-500">Chefs</span>
           </h1>
         </div>
@@ -546,7 +544,7 @@ function Landing({ aboutRef, homeRef, menuRef }) {
           {CHEFS.map((chef) => (
             <div
               key={chef.id}
-              className="bg-white rounded-3xl flex flex-col items-center overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+              className="bg-white dark:bg-gray-900 rounded-3xl flex flex-col items-center overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-800"
             >
               <div className="h-64 w-full overflow-hidden">
                 <img
@@ -557,13 +555,13 @@ function Landing({ aboutRef, homeRef, menuRef }) {
               </div>
 
               <div className="p-6 text-center w-full">
-                <h3 className="font-bold text-gray-900 text-xl">
+                <h3 className="font-bold text-gray-900 dark:text-white text-xl">
                   {chef.name}
                 </h3>
                 <p className="text-red-500 font-semibold text-sm mt-1">
                   {chef.role}
                 </p>
-                <p className="text-gray-500 text-sm mt-2">
+                <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">
                   {chef.experience}
                 </p>
               </div>

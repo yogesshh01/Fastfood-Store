@@ -76,7 +76,7 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] flex items-center justify-center px-4 py-12 font-sans">
+    <div className="min-h-screen bg-[#FAF8F5] dark:bg-gray-950 flex items-center justify-center px-4 py-12 font-sans">
       <div className="w-full max-w-md">
 
         {/* Logo */}
@@ -85,14 +85,14 @@ function Login() {
           onClick={() => navigate("/")}
         >
           <FastfoodIcon className="text-red-500" />
-          <span className="font-black text-2xl text-gray-900">
+          <span className="font-black text-2xl text-gray-900 dark:text-white">
             Fast<span className="text-red-500">food</span>
           </span>
         </div>
 
         {/* JWT Badge */}
         <div className="flex justify-center mb-6">
-          <span className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold px-4 py-1.5 rounded-full">
+          <span className="inline-flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900/20 text-xs font-bold px-4 py-1.5 rounded-full">
             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
             </svg>
@@ -101,19 +101,19 @@ function Login() {
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
 
           {/* Tabs */}
-          <div className="flex border-b border-gray-100">
+          <div className="flex border-b border-gray-100 dark:border-gray-800">
             <button
               onClick={() => { setTab("signin"); setErrors({}); setServerError(""); }}
-              className={`flex-1 py-4 text-sm font-bold transition-all cursor-pointer ${tab === "signin" ? "text-red-500 border-b-2 border-red-500 bg-red-50/30" : "text-gray-400 hover:text-gray-600"}`}
+              className={`flex-1 py-4 text-sm font-bold transition-all cursor-pointer ${tab === "signin" ? "text-red-500 border-b-2 border-red-500 bg-red-50/30 dark:bg-red-950/20" : "text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"}`}
             >
               Sign In
             </button>
             <button
               onClick={() => { setTab("signup"); setErrors({}); setServerError(""); }}
-              className={`flex-1 py-4 text-sm font-bold transition-all cursor-pointer ${tab === "signup" ? "text-red-500 border-b-2 border-red-500 bg-red-50/30" : "text-gray-400 hover:text-gray-600"}`}
+              className={`flex-1 py-4 text-sm font-bold transition-all cursor-pointer ${tab === "signup" ? "text-red-500 border-b-2 border-red-500 bg-red-50/30 dark:bg-red-950/20" : "text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"}`}
             >
               Create Account
             </button>
@@ -122,24 +122,24 @@ function Login() {
           <div className="p-8">
             {/* Social Buttons */}
             <div className="flex gap-3 mb-6">
-              <button className="flex-1 flex items-center justify-center gap-2 border border-gray-200 rounded-xl py-2.5 text-sm font-semibold text-gray-600 hover:bg-gray-50 active:scale-95 transition-all cursor-pointer">
+              <button className="flex-1 flex items-center justify-center gap-2 border border-gray-200 dark:border-gray-800 rounded-xl py-2.5 text-sm font-semibold text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:scale-95 transition-all cursor-pointer">
                 <FaGoogle className="text-red-400" /> Google
               </button>
-              <button className="flex-1 flex items-center justify-center gap-2 border border-gray-200 rounded-xl py-2.5 text-sm font-semibold text-gray-600 hover:bg-gray-50 active:scale-95 transition-all cursor-pointer">
-                <FaApple className="text-gray-800" /> Apple
+              <button className="flex-1 flex items-center justify-center gap-2 border border-gray-200 dark:border-gray-800 rounded-xl py-2.5 text-sm font-semibold text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 active:scale-95 transition-all cursor-pointer">
+                <FaApple className="text-gray-850 dark:text-white" /> Apple
               </button>
             </div>
 
             {/* Divider */}
             <div className="flex items-center gap-3 mb-6">
-              <div className="flex-1 h-px bg-gray-100" />
-              <span className="text-xs text-gray-400 font-medium">or continue with email</span>
-              <div className="flex-1 h-px bg-gray-100" />
+              <div className="flex-1 h-px bg-gray-100 dark:bg-gray-800" />
+              <span className="text-xs text-gray-400 dark:text-gray-400 font-medium">or continue with email</span>
+              <div className="flex-1 h-px bg-gray-100 dark:bg-gray-800" />
             </div>
 
             {/* Server Error */}
             {serverError && (
-              <div className="bg-red-50 border border-red-200 text-red-600 text-xs font-semibold px-4 py-3 rounded-xl mb-4 flex items-center gap-2">
+              <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/30 text-red-600 dark:text-red-400 text-xs font-semibold px-4 py-3 rounded-xl mb-4 flex items-center gap-2">
                 <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                 </svg>
@@ -151,7 +151,7 @@ function Login() {
             {tab === "signin" && (
               <form onSubmit={handleSignIn} className="flex flex-col gap-4">
                 <div>
-                  <label className="text-xs font-semibold text-gray-600 mb-1.5 block">Email Address</label>
+                  <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1.5 block">Email Address</label>
                   <div className="relative">
                     <FaEnvelope className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
                     <input
@@ -160,7 +160,7 @@ function Login() {
                       value={signInForm.email}
                       onChange={handleChange(setSignInForm, signInForm)}
                       placeholder="john@example.com"
-                      className={`w-full bg-gray-50 border rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.email ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:ring-red-500/20"}`}
+                      className={`w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.email ? "border-red-400 focus:ring-red-200" : "border-gray-200 dark:border-gray-800 focus:ring-red-500/20"}`}
                     />
                   </div>
                   {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
@@ -168,7 +168,7 @@ function Login() {
 
                 <div>
                   <div className="flex justify-between items-center mb-1.5">
-                    <label className="text-xs font-semibold text-gray-600">Password</label>
+                    <label className="text-xs font-semibold text-gray-600 dark:text-gray-300">Password</label>
                     <button type="button" className="text-xs text-red-500 hover:underline cursor-pointer">Forgot password?</button>
                   </div>
                   <div className="relative">
@@ -179,7 +179,7 @@ function Login() {
                       value={signInForm.password}
                       onChange={handleChange(setSignInForm, signInForm)}
                       placeholder="••••••••"
-                      className={`w-full bg-gray-50 border rounded-xl pl-10 pr-10 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.password ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:ring-red-500/20"}`}
+                      className={`w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border rounded-xl pl-10 pr-10 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.password ? "border-red-400 focus:ring-red-200" : "border-gray-200 dark:border-gray-800 focus:ring-red-500/20"}`}
                     />
                     <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer">
                       {showPass ? <FaEyeSlash /> : <FaEye />}
@@ -202,7 +202,7 @@ function Login() {
             {tab === "signup" && (
               <form onSubmit={handleSignUp} className="flex flex-col gap-4">
                 <div>
-                  <label className="text-xs font-semibold text-gray-600 mb-1.5 block">Full Name</label>
+                  <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1.5 block">Full Name</label>
                   <div className="relative">
                     <FaUser className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
                     <input
@@ -211,13 +211,13 @@ function Login() {
                       value={signUpForm.name}
                       onChange={handleChange(setSignUpForm, signUpForm)}
                       placeholder="John Doe"
-                      className={`w-full bg-gray-50 border rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.name ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:ring-red-500/20"}`}
+                      className={`w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.name ? "border-red-400 focus:ring-red-200" : "border-gray-200 dark:border-gray-800 focus:ring-red-500/20"}`}
                     />
                   </div>
                   {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-gray-600 mb-1.5 block">Email Address</label>
+                  <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1.5 block">Email Address</label>
                   <div className="relative">
                     <FaEnvelope className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
                     <input
@@ -226,13 +226,13 @@ function Login() {
                       value={signUpForm.email}
                       onChange={handleChange(setSignUpForm, signUpForm)}
                       placeholder="john@example.com"
-                      className={`w-full bg-gray-50 border rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.email ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:ring-red-500/20"}`}
+                      className={`w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.email ? "border-red-400 focus:ring-red-200" : "border-gray-200 dark:border-gray-800 focus:ring-red-500/20"}`}
                     />
                   </div>
                   {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-gray-600 mb-1.5 block">Password</label>
+                  <label className="text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1.5 block">Password</label>
                   <div className="relative">
                     <FaLock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
                     <input
@@ -241,7 +241,7 @@ function Login() {
                       value={signUpForm.password}
                       onChange={handleChange(setSignUpForm, signUpForm)}
                       placeholder="Min. 6 characters"
-                      className={`w-full bg-gray-50 border rounded-xl pl-10 pr-10 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.password ? "border-red-400 focus:ring-red-200" : "border-gray-200 focus:ring-red-500/20"}`}
+                      className={`w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border rounded-xl pl-10 pr-10 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${errors.password ? "border-red-400 focus:ring-red-200" : "border-gray-200 dark:border-gray-800 focus:ring-red-500/20"}`}
                     />
                     <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer">
                       {showPass ? <FaEyeSlash /> : <FaEye />}
@@ -250,7 +250,7 @@ function Login() {
                   {errors.password && <p className="text-red-400 text-xs mt-1">{errors.password}</p>}
                 </div>
 
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-gray-400 dark:text-gray-400">
                   By signing up, you agree to our{" "}
                   <span className="text-red-500 cursor-pointer hover:underline">Terms of Service</span> and{" "}
                   <span className="text-red-500 cursor-pointer hover:underline">Privacy Policy</span>.
@@ -268,7 +268,7 @@ function Login() {
           </div>
         </div>
 
-        <p className="text-center text-xs text-gray-400 mt-6">
+        <p className="text-center text-xs text-gray-400 dark:text-gray-450 mt-6">
           © 2025 Fastfood. All rights reserved.
         </p>
       </div>
