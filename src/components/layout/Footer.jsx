@@ -1,7 +1,10 @@
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Footer({ contactRef }) {
+  const navigate = useNavigate();
+
   return (
     <footer className="bg-black text-white">
       {/* Main Footer Info */}
@@ -52,12 +55,12 @@ function Footer({ contactRef }) {
         <div className="flex flex-col gap-5">
           <h2 className="font-bold text-lg border-l-4 border-red-500 pl-3">Quick Links</h2>
           <ul className="flex flex-col gap-3 text-gray-400 text-sm">
-            <li className="hover:text-red-500 transition cursor-pointer">Home</li>
-            <li className="hover:text-red-500 transition cursor-pointer">About Us</li>
-            <li className="hover:text-red-500 transition cursor-pointer">Our Menu</li>
-            <li className="hover:text-red-500 transition cursor-pointer">Reservation</li>
-            <li className="hover:text-red-500 transition cursor-pointer">Blog</li>
-            <li className="hover:text-red-500 transition cursor-pointer">Contact</li>
+            <li onClick={() => navigate('/')} className="hover:text-red-500 transition cursor-pointer">Home</li>
+            <li onClick={() => navigate('/about')} className="hover:text-red-500 transition cursor-pointer">About Us</li>
+            <li onClick={() => navigate('/menu')} className="hover:text-red-500 transition cursor-pointer">Our Menu</li>
+            <li onClick={() => navigate('/cart')} className="hover:text-red-500 transition cursor-pointer">Shopping Cart</li>
+            <li onClick={() => navigate('/profile')} className="hover:text-red-500 transition cursor-pointer">My Profile</li>
+            <li onClick={() => navigate('/contact')} className="hover:text-red-500 transition cursor-pointer">Contact Us</li>
           </ul>
         </div>
 
@@ -65,12 +68,10 @@ function Footer({ contactRef }) {
         <div className="flex flex-col gap-5">
           <h2 className="font-bold text-lg border-l-4 border-red-500 pl-3">Our Menu</h2>
           <ul className="flex flex-col gap-3 text-gray-400 text-sm">
-            <li className="hover:text-red-500 transition cursor-pointer">Burger</li>
-            <li className="hover:text-red-500 transition cursor-pointer">Pizza</li>
-            <li className="hover:text-red-500 transition cursor-pointer">Wrap</li>
-            <li className="hover:text-red-500 transition cursor-pointer">Fried Chicken</li>
-            <li className="hover:text-red-500 transition cursor-pointer">Pasta</li>
-            <li className="hover:text-red-500 transition cursor-pointer">Desserts</li>
+            <li onClick={() => navigate('/menu?search=Burger')} className="hover:text-red-500 transition cursor-pointer">Burgers</li>
+            <li onClick={() => navigate('/menu?search=Pizza')} className="hover:text-red-500 transition cursor-pointer">Pizzas</li>
+            <li onClick={() => navigate('/menu?search=Wrap')} className="hover:text-red-500 transition cursor-pointer">Wraps</li>
+            <li onClick={() => navigate('/menu?search=Dessert')} className="hover:text-red-500 transition cursor-pointer">Desserts</li>
           </ul>
         </div>
 
