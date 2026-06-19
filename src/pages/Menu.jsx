@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { FaSearch, FaShoppingCart, FaTimes, FaStar, FaLeaf, FaFire, FaPercentage } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaTimes, FaStar, FaLeaf, FaFire, FaPercentage, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FOOD_ITEMS } from "../utils/foodData";
+
+const ITEMS_PER_PAGE = 3;
 
 // Highlight matching search text
 const highlightText = (text, highlight) => {
@@ -19,6 +21,61 @@ const highlightText = (text, highlight) => {
   );
 };
 
+// ─── Pagination Component ──────────────────────────────────────────────────────
+function Paginator({ currentPage, totalPages, onPageChange }) {
+  if (totalPages <= 1) return null;
+
+  return (
+    <div className="flex items-center justify-center gap-2 mt-10">
+      {/* Prev Button */}
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold border transition-all duration-200 cursor-pointer
+          ${currentPage === 1
+            ? "border-gray-100 dark:border-gray-800 text-gray-300 dark:text-gray-600 bg-gray-50 dark:bg-gray-900 cursor-not-allowed"
+            : "border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-900 hover:border-red-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 shadow-sm"
+          }`}
+      >
+        <FaChevronLeft className="text-xs" />
+        Prev
+      </button>
+
+      {/* Page Numbers */}
+      <div className="flex items-center gap-1.5">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => onPageChange(page)}
+            className={`w-9 h-9 rounded-xl text-sm font-bold border transition-all duration-200 cursor-pointer
+              ${page === currentPage
+                ? "bg-red-500 border-red-500 text-white shadow-md shadow-red-500/25 scale-105"
+                : "bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-red-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20"
+              }`}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
+
+      {/* Next Button */}
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold border transition-all duration-200 cursor-pointer
+          ${currentPage === totalPages
+            ? "border-gray-100 dark:border-gray-800 text-gray-300 dark:text-gray-600 bg-gray-50 dark:bg-gray-900 cursor-not-allowed"
+            : "border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-900 hover:border-red-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 shadow-sm"
+          }`}
+      >
+        Next
+        <FaChevronRight className="text-xs" />
+      </button>
+    </div>
+  );
+}
+
+// ─── Main Menu Component ───────────────────────────────────────────────────────
 function Menu({ setCart }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
@@ -31,8 +88,17 @@ function Menu({ setCart }) {
       setSearchParams({});
     }
   };
+
   const [toastMessage, setToastMessage] = useState("");
   const [activeSection, setActiveSection] = useState("burger");
+
+  // Per-section pagination state: { burger: 1, pizza: 1, wrap: 1, dessert: 1 }
+  const [sectionPages, setSectionPages] = useState({
+    burger: 1,
+    pizza: 1,
+    wrap: 1,
+    dessert: 1,
+  });
 
   // Refs for Category sections
   const burgerRef = useRef(null);
@@ -45,10 +111,15 @@ function Menu({ setCart }) {
     window.scrollTo(0, 0);
   }, []);
 
+  // Reset all pages to 1 when search query changes
+  useEffect(() => {
+    setSectionPages({ burger: 1, pizza: 1, wrap: 1, dessert: 1 });
+  }, [searchQuery]);
+
   // Robust window scroll listener scroll-spy
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 220; // offset for sticky nav + spacing
+      const scrollPosition = window.scrollY + 220;
 
       const sections = [
         { id: "burger", ref: burgerRef },
@@ -57,7 +128,6 @@ function Menu({ setCart }) {
         { id: "dessert", ref: dessertRef },
       ];
 
-      // Loop backwards to find the current active section
       for (let i = sections.length - 1; i >= 0; i--) {
         const sec = sections[i];
         if (sec.ref.current) {
@@ -71,7 +141,6 @@ function Menu({ setCart }) {
     };
 
     window.addEventListener("scroll", handleScroll);
-    // Trigger once on mount in case page is loaded scrolled down
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -94,8 +163,9 @@ function Menu({ setCart }) {
   const getFilteredSectionItems = (categoryName) => {
     return FOOD_ITEMS.filter((item) => {
       const matchesCategory = item.category === categoryName;
-      const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            item.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesSearch =
+        item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
     });
   };
@@ -128,43 +198,52 @@ function Menu({ setCart }) {
   const handleScrollToSection = (id, sectionRef) => {
     setActiveSection(id);
     if (sectionRef.current) {
-      const offset = 130; // accounting for sticky category nav
+      const offset = 130;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = sectionRef.current.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
       const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
+  };
+
+  // Handle page change for a section — also scroll to section top
+  const handlePageChange = (sectionId, newPage, sectionRef) => {
+    setSectionPages((prev) => ({ ...prev, [sectionId]: newPage }));
+    // Scroll to section top smoothly after a tick
+    setTimeout(() => {
+      if (sectionRef.current) {
+        const offset = 130;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = sectionRef.current.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      }
+    }, 50);
   };
 
   return (
     <div className="w-full bg-[#FAF8F5] dark:bg-gray-950 text-gray-900 dark:text-white overflow-x-clip font-sans min-h-screen pb-16">
+
       {/* Premium Toast Alert */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl p-4 flex items-center gap-3.5 animate-in fade-in slide-in-from-bottom-5 duration-300 max-w-sm overflow-hidden min-w-[280px]">
-          {/* Green check icon */}
           <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100 dark:border-emerald-900/50 shadow-lg shadow-emerald-500/10">
             <svg className="w-5 h-5 animate-pulse text-emerald-500" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          {/* Text and Actions */}
           <div className="flex-1 min-w-0 pr-2">
             <p className="text-[10px] font-black text-gray-400 dark:text-gray-400 uppercase tracking-widest leading-none">Added to Cart</p>
             <p className="text-sm font-bold text-gray-800 dark:text-white truncate mt-1.5 leading-none">{toastMessage}</p>
           </div>
-          {/* Action Button */}
           <button
             onClick={() => navigate("/cart")}
             className="text-xs font-black text-red-500 hover:text-red-600 hover:underline cursor-pointer shrink-0 whitespace-nowrap ml-1"
           >
             View Cart →
           </button>
-          {/* Progress Indicator Bar */}
           <div className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-emerald-500 to-green-400 animate-shrink-width"></div>
         </div>
       )}
@@ -178,11 +257,9 @@ function Menu({ setCart }) {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/65"></div>
-          {/* Bottom blend transition */}
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FAF8F5] dark:from-gray-950 to-transparent"></div>
         </div>
 
-        {/* Content - Simple & Professional */}
         <div className="relative z-10 text-center px-6 max-w-3xl mx-auto flex flex-col items-center gap-4">
           <span className="text-red-500 font-extrabold text-xs sm:text-sm uppercase tracking-widest bg-red-50 dark:bg-red-950/20 px-5 py-2 rounded-full border border-red-200 dark:border-red-900/30 shadow-xs">
             Our Menu
@@ -194,7 +271,7 @@ function Menu({ setCart }) {
             Browse our fresh categories, search for ingredients, and build your gourmet order instantly.
           </p>
 
-          {/* Clean Search Input */}
+          {/* Search Input */}
           <div className="relative w-full max-w-md mt-2 shadow-sm">
             <input
               type="text"
@@ -264,7 +341,7 @@ function Menu({ setCart }) {
                   Deal of the Day
                 </span>
                 <h3 className="font-bold text-lg sm:text-xl text-gray-900 dark:text-white mt-2">
-                  Order BBQ Bacon Deluxe & Get Free Cold Shake!
+                  Order BBQ Bacon Deluxe &amp; Get Free Cold Shake!
                 </h3>
                 <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-1">
                   Add the legendary smoky BBQ bacon burger to your order today and unlock an instant custom beverage treat.
@@ -272,7 +349,7 @@ function Menu({ setCart }) {
               </div>
             </div>
             <button
-              onClick={() => addToCart(FOOD_ITEMS[1])} // Add BBQ Bacon Deluxe
+              onClick={() => addToCart(FOOD_ITEMS[1])}
               className="bg-red-500 hover:bg-red-600 active:scale-95 text-white px-6 py-2.5 rounded-xl font-bold text-xs shadow-md transition duration-300 cursor-pointer shrink-0"
             >
               Add Deal to Cart
@@ -281,9 +358,7 @@ function Menu({ setCart }) {
         </div>
       )}
 
-      {/* ------------------------------------------------------------------------- */}
-
-      {/* DYNAMIC FOOD SECTIONS */}
+      {/* DYNAMIC FOOD SECTIONS WITH PAGINATION */}
       <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 xl:px-32 py-12 flex flex-col gap-20">
         {searchQuery.trim() !== "" && totalFilteredItems === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 px-6 text-center bg-white dark:bg-gray-900 rounded-[32px] border border-gray-100 dark:border-gray-800 max-w-2xl mx-auto w-full shadow-xs">
@@ -303,13 +378,24 @@ function Menu({ setCart }) {
           </div>
         ) : (
           menuSections.map((sec, sectionIdx) => {
-            const sectionItems = getFilteredSectionItems(sec.category);
+            const allSectionItems = getFilteredSectionItems(sec.category);
 
-            // Hide empty category sections when search is active
-            if (searchQuery.trim() !== "" && sectionItems.length === 0) return null;
+            // Hide empty sections during search
+            if (searchQuery.trim() !== "" && allSectionItems.length === 0) return null;
+
+            const currentPage = sectionPages[sec.id] || 1;
+            const totalPages = Math.ceil(allSectionItems.length / ITEMS_PER_PAGE);
+            const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+            const pagedItems = allSectionItems.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+            const sectionRef = getSectionRef(sec.id);
 
             return (
-              <div key={sectionIdx} ref={getSectionRef(sec.id)} id={sec.id} className={`scroll-mt-32 ${sec.id !== 'burger' ? 'pt-6 md:pt-8' : ''}`}>
+              <div
+                key={sectionIdx}
+                ref={sectionRef}
+                id={sec.id}
+                className={`scroll-mt-32 ${sec.id !== "burger" ? "pt-6 md:pt-8" : ""}`}
+              >
                 {/* Section Header */}
                 <div className="border-b border-gray-100 dark:border-gray-800 pb-3 mb-8 flex items-end justify-between">
                   <div>
@@ -317,18 +403,25 @@ function Menu({ setCart }) {
                       <span>{sec.icon}</span>
                       <span>{sec.name}</span>
                       <span className="text-xs font-normal text-gray-400 bg-gray-50 dark:bg-gray-950 border border-gray-100 dark:border-gray-800 px-2 py-0.5 rounded-full ml-1">
-                        {sectionItems.length} {sectionItems.length === 1 ? 'item' : 'items'}
+                        {allSectionItems.length} {allSectionItems.length === 1 ? "item" : "items"}
                       </span>
                     </h2>
                     <p className="text-gray-400 dark:text-gray-400 text-xs sm:text-sm mt-1 max-w-xl">
                       {sec.desc}
                     </p>
                   </div>
+
+                  {/* Page indicator on the right of section header */}
+                  {totalPages > 1 && (
+                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 px-3 py-1 rounded-full shrink-0 ml-4">
+                      Page {currentPage} / {totalPages}
+                    </span>
+                  )}
                 </div>
 
                 {/* Grid of Items */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {sectionItems.map((item) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-300">
+                  {pagedItems.map((item) => (
                     <div
                       key={item.id}
                       onClick={() => navigate(`/product/${item.id}`)}
@@ -341,8 +434,7 @@ function Menu({ setCart }) {
                           alt={item.name}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
                         />
-                        
-                        {/* Rating Badge Right Top */}
+                        {/* Rating Badge */}
                         <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1 z-10">
                           <FaStar className="text-amber-400 text-[10px]" />
                           <span>{item.rating}</span>
@@ -355,7 +447,7 @@ function Menu({ setCart }) {
                           {highlightText(item.name, searchQuery)}
                         </h3>
 
-                        {/* Dietary Tags inside Details */}
+                        {/* Dietary Tags */}
                         <div className="flex flex-wrap gap-1.5 mt-2">
                           {item.veg && (
                             <span className="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/50 font-extrabold px-2 py-0.5 rounded text-[10px] tracking-wide uppercase flex items-center gap-1">
@@ -398,12 +490,18 @@ function Menu({ setCart }) {
                     </div>
                   ))}
                 </div>
+
+                {/* Pagination Controls */}
+                <Paginator
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={(newPage) => handlePageChange(sec.id, newPage, sectionRef)}
+                />
               </div>
             );
           })
         )}
       </div>
-
     </div>
   );
 }
