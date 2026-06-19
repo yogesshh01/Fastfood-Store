@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import {
   FaSearch, FaShoppingCart, FaTimes, FaStar, FaLeaf,
@@ -40,6 +40,26 @@ function Menu({ setCart }) {
   const [toastMessage, setToastMessage] = useState("");
   // activePage = index of menuSections (0=Burger, 1=Pizza, 2=Wrap, 3=Dessert)
   const [activePage, setActivePage] = useState(0);
+
+  // Track navbar visibility (same logic as Navbar.jsx)
+  const [navbarVisible, setNavbarVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 10) {
+        setNavbarVisible(true);
+      } else if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setNavbarVisible(false);
+      } else if (currentScrollY < lastScrollY.current) {
+        setNavbarVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Scroll to top only on first mount
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, []);
@@ -149,7 +169,7 @@ function Menu({ setCart }) {
       </div>
 
       {/* ── CATEGORY TAB PAGINATION BAR ─────────────────────────────────────────── */}
-      <div className="sticky top-[84px] z-30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800 py-4 px-6">
+      <div className={`sticky z-30 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800 py-4 px-6 transition-all duration-300 ${navbarVisible ? "top-[84px]" : "top-0"}`}>
         <div className="max-w-7xl mx-auto flex justify-center items-center gap-3 overflow-x-auto scrollbar-none">
           <span className="text-gray-400 text-xs uppercase font-extrabold tracking-wider mr-2 hidden md:inline shrink-0">
             Category:
