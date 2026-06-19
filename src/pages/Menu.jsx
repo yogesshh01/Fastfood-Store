@@ -41,9 +41,8 @@ function Menu({ setCart }) {
   // activePage = index of menuSections (0=Burger, 1=Pizza, 2=Wrap, 3=Dessert)
   const [activePage, setActivePage] = useState(0);
 
-  // Scroll to top on mount and on page change
+  // Scroll to top only on first mount
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, []);
-  useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, [activePage]);
 
   // Reset to first page when search changes
   useEffect(() => { setActivePage(0); }, [searchQuery]);
